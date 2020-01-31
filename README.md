@@ -2,8 +2,8 @@
 CREATE DATABASE quick_laravel CHARACTER SET utf8;
 GRANT ALL PRIVILEGES ON quick_laravel.* TO quickusr@localhost IDENTIFIED BY 'quickpass';
 USE quick_laravel;
-# source C:\Users\user07\Downloads\Laravel\quick.sql
-source C:\Users\user07\php\Laravel\quick.sql
+# source C:\Users\user07\Downloads\quick-laravel\quick.sql
+source C:\Users\sae\php\quick-laravel\quick.sql
 ```
 
 

@@ -18,4 +18,24 @@ class ViewController extends Controller
             'random' => random_int(0, 100)
         ]);
     }
+    public function isset()
+    {
+        return view('view.isset', [
+            'msg' => "こんにちは世界!"
+        ]);
+    }
+    public function switch()
+    {
+        return view('view.switch', [
+            'random' => random_int(1, 5)
+        ]);
+    }
+    public function while()
+    {
+        return view('view.while', []);
+    }
+    public function for()
+    {
+        return view('view.for', []);
+    }
 }

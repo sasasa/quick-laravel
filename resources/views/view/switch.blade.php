@@ -1,0 +1,16 @@
+@switch($random)
+    @case(1)
+        <p>大ラッキー</p>
+        @break
+    @case(2)
+        <p>ちょっぴり良いことあるかも</p>
+        @break
+    @case(3)
+        <p>ふつーの日です</p>
+        @break
+    @case(4)
+        <p>今日は静かに過ごしましょう</p>
+        @break
+    @default
+        <p>uuuum....</p>
+@endswitch
