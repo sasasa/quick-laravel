@@ -10,19 +10,23 @@
 <body>
   <table class="table">
     <tr>
+      <th>No.</th>
       <th>書名</th>
       <th>価格</th>
       <th>出版社</th>
       <th>刊行日</th>
     </tr>
-    @foreach($records as $record)
+    @foreach($records as $index => $record)
     <tr>
+      <td>{{$index + 1}}</td>
       <td>{{$record->title}}</td>
       <td>{{$record->price}}</td>
       <td>{{$record->publisher}}</td>
       <td>{{$record->published}}</td>
     </tr>
     @endforeach
+    {{-- コレクションビュー呼び出し --}}
+    @each('subviews.book', $records, 'record', 'subviews.empty')
   </table>
 </body>
 </html>

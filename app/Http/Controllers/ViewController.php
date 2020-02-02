@@ -38,4 +38,36 @@ class ViewController extends Controller
     {
         return view('view.for', []);
     }
+    public function foreach_assoc()
+    {
+        return view('view.foreach_assoc', [
+            'member' => [
+                'name' => 'Yamada Yoshihiro',
+                'sex' => '男',
+                'birth' => '1923-11-10',
+            ]
+        ]);
+    }
+    public function foreach_loop()
+    {
+        return view('view.foreach_loop', [
+            'weeks' => ['月','火','水','木','金','土','日',]
+        ]);
+    }
+    public function forelse()
+    {
+        return view('view.forelse', [
+            'records' => []
+        ]);
+    }
+    public function master()
+    {
+        return view('view.master', [
+            'msg' => 'こんにちは世界とテンプレート'
+        ]);
+    }
+    public function comp()
+    {
+        return view('view.comp', []);
+    }
 }
