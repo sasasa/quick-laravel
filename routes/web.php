@@ -46,3 +46,16 @@ Route::view('route', 'route.view', [
 
 // default 302 Found
 Route::redirect('/hoge', '/', 301);
+
+Route::resource('articles', 'ArticleController');
+
+
+Route::get('ctrl/plain','CtrlController@plain');
+Route::get('ctrl/header','CtrlController@header');
+Route::get('ctrl/outJson','CtrlController@outJson');
+Route::get('ctrl/outJson2','CtrlController@outJson2');
+
+
+Route::fallback(function(){
+    return view('route.error');
+});

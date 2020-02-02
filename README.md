@@ -4,6 +4,14 @@ GRANT ALL PRIVILEGES ON quick_laravel.* TO quickusr@localhost IDENTIFIED BY 'qui
 USE quick_laravel;
 # source C:\Users\user07\Downloads\quick-laravel\quick.sql
 source C:\Users\sae\php\quick-laravel\quick.sql
+
+source C:\Users\sae\php\quick-laravel\article.sql
+```
+
+```
+ php artisan make:controller ArticleController --resource --model=Ariticle
+
+ php artisan make:model Book
 ```
 
 
