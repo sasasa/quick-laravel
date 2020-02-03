@@ -12,9 +12,15 @@ source C:\Users\sae\php\quick-laravel\article.sql
 ```
  php artisan make:controller ArticleController --resource --model=Ariticle
 
+ php artisan make:controller StateController
+
  php artisan make:model Book
 
  php artisan make:middleware LogMiddleware
+
+ php artisan session:table
+ php artisan migrate
+
 ```
 
 

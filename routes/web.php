@@ -76,6 +76,12 @@ Route::group(['middleware'=>['debug']], function(){
     Route::get('ctrl/upper','CtrlController@upper')->middleware(UpperMiddleware::class);
 });
 
+Route::get('state/recCookie','StateController@recCookie');
+Route::get('state/readCookie','StateController@readCookie');
+Route::get('state/session1','StateController@session1');
+Route::get('state/session2','StateController@session2');
+Route::get('state/session3','StateController@session3');
+Route::get('state/session4','StateController@session4');
 
 
 Route::fallback(function(){
