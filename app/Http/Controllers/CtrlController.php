@@ -105,7 +105,7 @@ class CtrlController extends Controller
             'userAgent: ' => $req->userAgent(),
         ]);
         
-        return "<p>var_dump</p>";
+        return "<p>middleware hoge: ". $req->hoge. "</p>";
     }
     public function form(Request $req)
     {
@@ -155,5 +155,17 @@ class CtrlController extends Controller
     public function upper(Request $req)
     {
         return "aiueo upper?";
+    }
+
+    // コンストラクタ
+    public function __construct()
+    {
+        $this->middleware(function($req, $next) {
+            // ビュー変数を設定
+            $req->merge([
+                'hoge'=>"速習Laravel",
+            ]);
+            return $next($req);
+        })->only(['index']);
     }
 }
