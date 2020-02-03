@@ -2,9 +2,10 @@
 CREATE DATABASE quick_laravel CHARACTER SET utf8;
 GRANT ALL PRIVILEGES ON quick_laravel.* TO quickusr@localhost IDENTIFIED BY 'quickpass';
 USE quick_laravel;
-# source C:\Users\user07\Downloads\quick-laravel\quick.sql
+# source C:\Users\user07\php\quick-laravel\quick.sql
 source C:\Users\sae\php\quick-laravel\quick.sql
 
+# source C:\Users\user07\php\quick-laravel\article.sql
 source C:\Users\sae\php\quick-laravel\article.sql
 ```
 
@@ -12,6 +13,8 @@ source C:\Users\sae\php\quick-laravel\article.sql
  php artisan make:controller ArticleController --resource --model=Ariticle
 
  php artisan make:model Book
+
+ php artisan make:middleware LogMiddleware
 ```
 
 
