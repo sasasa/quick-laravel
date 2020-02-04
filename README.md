@@ -7,6 +7,9 @@ source C:\Users\sae\php\quick-laravel\quick.sql
 
 # source C:\Users\user07\php\quick-laravel\article.sql
 source C:\Users\sae\php\quick-laravel\article.sql
+
+DROP TABLE books;
+SHOW TABLES FROM quick_laravel;
 ```
 
 ```
@@ -20,6 +23,18 @@ source C:\Users\sae\php\quick-laravel\article.sql
 
  php artisan session:table
  php artisan migrate
+
+ php artisan make:migration create_books_table
+
+ php artisan migrate
+ 一つロールバック
+ php artisan migrate:rollback
+ 全ロールバック
+ php artisan migrate:reset
+ 全ロールバックしてマイグレート
+ php artisan migrate:refresh
+ 全ロールバックしてマイグレートしてシードを投入
+ php artisan migrate:refresh --seed
 
 ```
 

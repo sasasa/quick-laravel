@@ -118,9 +118,20 @@ class CtrlController extends Controller
         // $name = $req->name;
         // nameが空文字の時はデフォルトは呼ばれない
         $name = $req->input('name', '名無しの権平');
-        return view('ctrl.form', [
-            'result'=>'こんにちは'. $name. 'さん！'
-        ]);
+
+        if(empty($name) || mb_strlen($name) > 10 ) {
+            return redirect('ctrl/form')
+            // 入力欄の復元
+            ->withInput()
+            // flashメッセージ
+            ->with('alert', '名前は必須または10文字以内で入力してください。');
+        } else {
+            // リクエスト情報をflashに保存する
+            $req->flash();
+            return view('ctrl.form', [
+                'result'=>'こんにちは'. $name. 'さん！'
+            ]);
+        }
     }
     public function upload()
     {
