@@ -83,6 +83,27 @@ Route::get('state/session2','StateController@session2');
 Route::get('state/session3','StateController@session3');
 Route::get('state/session4','StateController@session4');
 
+Route::get('record/find','RecordController@find');
+Route::get('record/all','RecordController@all');
+Route::get('record/where','RecordController@where');
+Route::get('record/lessthan','RecordController@lessthan');
+Route::get('record/like','RecordController@like');
+Route::get('record/whereIn','RecordController@whereIn');
+Route::get('record/whereBetween','RecordController@whereBetween');
+Route::get('record/whereNull','RecordController@whereNull');
+Route::get('record/whereYear','RecordController@whereYear');
+Route::get('record/and','RecordController@and');
+Route::get('record/or','RecordController@or');
+Route::get('record/raw','RecordController@raw');
+Route::get('record/orderBy','RecordController@orderBy');
+Route::get('record/offsetlimit','RecordController@offsetlimit');
+Route::get('record/select','RecordController@select');
+Route::get('record/groupBy','RecordController@groupBy');
+Route::get('record/having','RecordController@having');
+Route::get('record/max','RecordController@max');
+Route::get('record/sql','RecordController@sql');
+
+
 
 Route::fallback(function(){
     return view('route.error');

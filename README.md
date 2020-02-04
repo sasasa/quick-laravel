@@ -25,6 +25,7 @@ SHOW TABLES FROM quick_laravel;
  php artisan migrate
 
  php artisan make:migration create_books_table
+ php artisan make:seeder BooksTableSeeder
 
  php artisan migrate
  一つロールバック
@@ -35,6 +36,9 @@ SHOW TABLES FROM quick_laravel;
  php artisan migrate:refresh
  全ロールバックしてマイグレートしてシードを投入
  php artisan migrate:refresh --seed
+
+ php artisan db:seed --class=BooksTableSeeder
+
 
 ```
 
