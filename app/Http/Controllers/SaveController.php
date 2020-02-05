@@ -49,5 +49,6 @@ class SaveController extends Controller
         $b = Book::findOrFail($id);
         $b->delete();
         return redirect('hello/list');
+        
     }
 }
