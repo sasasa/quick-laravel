@@ -15,6 +15,7 @@
       <th>価格</th>
       <th>出版社</th>
       <th>刊行日</th>
+      <th></th>
     </tr>
     @foreach($records as $index => $record)
     <tr>
@@ -23,8 +24,21 @@
       <td>{{$record->price}}</td>
       <td>{{$record->publisher}}</td>
       <td>{{$record->published}}</td>
+      <td>
+        <a href="/save/{{$record->id}}/edit">編集</a>
+        <a href="/save/{{$record->id}}">削除</a>
+      </td>
     </tr>
     @endforeach
+  </table>
+
+  <table class="table">
+    <tr>
+      <th>書名</th>
+      <th>価格</th>
+      <th>出版社</th>
+      <th>刊行日</th>
+    </tr>
     {{-- コレクションビュー呼び出し --}}
     @each('subviews.book', $records, 'record', 'subviews.empty')
   </table>

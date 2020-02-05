@@ -104,7 +104,7 @@ class RecordController extends Controller
     public function having()
     {
         $result = Book::groupBy('publisher')->having('price_avg', '<', 2500)->selectRaw('publisher, AVG(price) AS price_avg')->get();
-        return view('recoed.groupBy', [
+        return view('record.groupBy', [
             'records' => $result,
             'title' => "having",
         ]);
@@ -122,6 +122,13 @@ class RecordController extends Controller
     {
         return view('hello.list', [
             'records' => DB::select('SELECT * FROM books'),
+        ]);
+    }
+
+    public function hasMany()
+    {
+        return view('record.hasMany', [
+            'book' => Book::find(1)
         ]);
     }
 }

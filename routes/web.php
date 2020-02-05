@@ -102,8 +102,16 @@ Route::get('record/groupBy','RecordController@groupBy');
 Route::get('record/having','RecordController@having');
 Route::get('record/max','RecordController@max');
 Route::get('record/sql','RecordController@sql');
+Route::get('record/hasMany','RecordController@hasMany');
 
 
+Route::get('save/create','SaveController@create');
+Route::post('save/store','SaveController@store');
+Route::get('save/{id}/edit','SaveController@edit');
+Route::patch('save/{id}','SaveController@update');
+Route::get('save/{id}','SaveController@show');
+Route::delete('save/{id}','SaveController@destroy');
+// Route::resource('save', 'SaveController');
 
 Route::fallback(function(){
     return view('route.error');

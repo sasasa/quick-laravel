@@ -18,6 +18,7 @@ SHOW TABLES FROM quick_laravel;
  php artisan make:controller StateController
 
  php artisan make:model Book
+ php artisan make:model Review
 
  php artisan make:middleware LogMiddleware
 
@@ -25,7 +26,10 @@ SHOW TABLES FROM quick_laravel;
  php artisan migrate
 
  php artisan make:migration create_books_table
+ php artisan make:migration create_reviews_table
+
  php artisan make:seeder BooksTableSeeder
+ php artisan make:seeder ReviewsTableSeeder
 
  php artisan migrate
  一つロールバック
@@ -36,7 +40,7 @@ SHOW TABLES FROM quick_laravel;
  php artisan migrate:refresh
  全ロールバックしてマイグレートしてシードを投入
  php artisan migrate:refresh --seed
-
+ 
  php artisan db:seed --class=BooksTableSeeder
 
 
