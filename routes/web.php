@@ -72,7 +72,8 @@ Route::get('ctrl/index','CtrlController@index');
 Route::get('ctrl/form','CtrlController@form');
 Route::post('ctrl/result','CtrlController@result');
 Route::get('ctrl/upload','CtrlController@upload');
-Route::post('ctrl/uploadfile','CtrlController@uploadfile');
+Route::post('ctrl/upload','CtrlController@uploadfile');
+Route::get('ctrl/uploadimage/{name}','CtrlController@uploadimage');
 Route::get('ctrl/middle','CtrlController@middle')->middleware(LogMiddleware::class);
 Route::group(['middleware'=>['debug']], function(){
     Route::get('ctrl/upper','CtrlController@upper')->middleware(UpperMiddleware::class);

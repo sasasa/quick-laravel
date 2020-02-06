@@ -137,23 +137,44 @@ class CtrlController extends Controller
     {
         return view('ctrl.upload', ['result'=>'']);
     }
+    public function uploadimage($name)
+    {
+        if(strpos($name,'..') !== false){
+            return "";
+        }
+        $fullPath = storage_path('app'. DIRECTORY_SEPARATOR. 'files'. DIRECTORY_SEPARATOR. $name);
+        $mimeType = mime_content_type($fullPath);
+
+        return response()->file($fullPath, [
+            'Content-type' => $mimeType,
+        ]);
+    }
     public function uploadfile(Request $req)
     {
         // ファイルが指定されているか
         if(!$req->hasFile('upfile')) {
-            return 'ファイルを指定してください。';
+
+            return redirect('ctrl/upload')->with('error', 'ファイルを指定してください。');
         }
         $file = $req->upfile;
         // 正しくアップロードできているか
         if(!$file->isValid()) {
-            return 'アップロードに失敗しました。';
+            return redirect('ctrl/upload')->with('error', 'アップロードに失敗しました。');
         }
+        $this->validate($req, [
+            'upfile' => 'image|dimensions:max_width=600',
+        ]);
+
+
         // オリジナルファイル名を取得
         $name = $file->getClientOriginalName();
+        $mimeType = $file->getClientMimeType();
+
         // アップロードファイルを保存
         $file->storeAs('files', $name);
         return view('ctrl.upload', [
-            'result' => $name. 'をアップロードしました。'
+            'result' => $name. 'をアップロードしました。'. storage_path('app'.DIRECTORY_SEPARATOR. 'files'. DIRECTORY_SEPARATOR. $name). ": ". $mimeType,
+            'name' => $name,
         ]);
     }
     public function middle(Request $req)
