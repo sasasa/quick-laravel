@@ -109,6 +109,8 @@ return [
       'price' => '価格',
       'publisher' => '出版社',
       'published' => '刊行日',
+      'consent' => 'プライバシーポリシー',
+      'password' => 'パスワード',
     ],
 
 ];
