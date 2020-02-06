@@ -21,7 +21,8 @@ class LogMiddleware
             'author'=>"YAMADA Yoshihiro",
         ]);
         
-        file_put_contents('C:\Users\user07\php\quick-laravel\storage\logs\access.log', date('Y-m-d H:i:s')."\n", FILE_APPEND);
+        $path = base_path(). '\storage\logs\access.log';
+        file_put_contents($path, date('Y-m-d H:i:s'). "\n", FILE_APPEND);
         return $next($request);
     }
 }

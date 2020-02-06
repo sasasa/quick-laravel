@@ -1,6 +1,8 @@
 <?php
 use App\Http\Middleware\LogMiddleware;
 use App\Http\Middleware\UpperMiddleware;
+use App\Http\Middleware\ElapsedTimeMiddleware;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +19,7 @@ Route::get('/', function () {
 });
 Route::get('hello','HelloController@index');
 Route::get('hello/view','HelloController@view');
-Route::get('hello/list','HelloController@list');
+Route::get('hello/list','HelloController@list')->middleware(ElapsedTimeMiddleware::class);;
 
 Route::get('view/escape','ViewController@escape');
 Route::get('view/if','ViewController@if');

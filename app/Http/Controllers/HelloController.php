@@ -25,6 +25,7 @@ class HelloController extends Controller
         $data = [
             'records' => Book::all()
         ];
+        sleep(1);
         return view('hello.list', $data);
     }
 }
