@@ -17,6 +17,8 @@ SHOW TABLES FROM quick_laravel;
 
  php artisan make:controller StateController
 
+ php artisan make:provider HelloServiceProvider
+
  php artisan make:model Book
  php artisan make:model Review
 
