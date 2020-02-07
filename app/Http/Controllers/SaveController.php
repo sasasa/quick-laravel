@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use Illuminate\Http\Request;
-use App\Http\Requests\HelloRequest;
+use App\Http\Requests\StoreRequest;
+use App\Http\Requests\UpdateRequest;
+use Illuminate\Validation\Rule;
 
 class SaveController extends Controller
 {
@@ -13,7 +15,7 @@ class SaveController extends Controller
         return view('save.create');
     }
     
-    public function store(HelloRequest $req)
+    public function store(StoreRequest $req)
     {
         // $this->validate($req, Book::$rules);
         
@@ -29,10 +31,15 @@ class SaveController extends Controller
         ]);
     }
 
-    public function update(HelloRequest $req, int $id)
+    public function update(UpdateRequest $req, int $id)
     {
         // $this->validate($req, Book::$rules);
         $b = Book::find($id);
+
+        $req->validate([
+            'isbn' => [Rule::unique('books', 'isbn')->whereNot('isbn', $b->isbn)]
+        ]);
+
         $b->fill($req->except('_token','_method'))->save();
         return redirect('hello/list');
     }
