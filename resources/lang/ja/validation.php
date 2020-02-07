@@ -13,6 +13,7 @@ return [
     |
     */
     'hello'                => ':attributeは偶数のみ受け付けます。',
+    'dimensions'           => ':attributeは無効な画像サイズです。',
     'accepted'             => ':attributeを承認してください。',
     'active_url'           => ':attributeは正しいURLではありません。',
     'after'                => ':attributeは:date以降の日付にしてください。',
@@ -111,6 +112,8 @@ return [
       'published' => '刊行日',
       'consent' => 'プライバシーポリシー',
       'password' => 'パスワード',
+
+      'upfile' => 'アップロード'
     ],
 
 ];
