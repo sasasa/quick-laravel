@@ -22,6 +22,8 @@ SHOW TABLES FROM quick_laravel;
  php artisan make:model Book
  php artisan make:model Review
 
+ php artisan make:request HelloRequest
+
  php artisan make:middleware LogMiddleware
  php artisan make:middleware ElapsedTimeMiddleware
 

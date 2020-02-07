@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use Illuminate\Http\Request;
+use App\Http\Requests\HelloRequest;
 
 class SaveController extends Controller
 {
@@ -12,26 +13,25 @@ class SaveController extends Controller
         return view('save.create');
     }
     
-    public function store(Request $req)
+    public function store(HelloRequest $req)
     {
-        $this->validate($req, Book::$rules);
+        // $this->validate($req, Book::$rules);
         
         $b = new Book();
         $b->fill($req->except('_token'))->save();
         return redirect('save/create');
     }
 
-    public function edit(int $id)
+    public function edit(Request $req, int $id)
     {
         return view('save.edit', [
             'b' => Book::findOrFail($id)
         ]);
     }
 
-    public function update(Request $req, int $id)
+    public function update(HelloRequest $req, int $id)
     {
-        $this->validate($req, Book::$rules);
-        
+        // $this->validate($req, Book::$rules);
         $b = Book::find($id);
         $b->fill($req->except('_token','_method'))->save();
         return redirect('hello/list');

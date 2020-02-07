@@ -87,6 +87,23 @@
 </div>
 
 <div class="pl-2">
+  @error('consent')
+    <div class="text-danger">{{$message}}</div>
+  @enderror
+  <label for="consent">@lang('validation.attributes.consent')：</label><br>
+  <input type="checkbox" id="consent" name="consent" value="1" {{old('consent')=="1" ? "checked" : null}}>
+</div>
+
+<div class="pl-2">
+  @error('password')
+    <div class="text-danger">{{$message}}</div>
+  @enderror
+  <label for="password">@lang('validation.attributes.password')：</label><br>
+  <input type="text" id="password" name="password">
+  <input type="text" id="password_confirmation" name="password_confirmation">
+</div>
+
+<div class="pl-2">
   <input type="submit" value="送信">
 </div>
 
