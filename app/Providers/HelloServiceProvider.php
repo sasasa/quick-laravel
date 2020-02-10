@@ -25,7 +25,10 @@ class HelloServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // ビューコンポーザーの設定
         View::composer('hello.list', 'App\Http\Composers\HelloComposer');
+        
+        // バリデーターの設定
         $validator = $this->app['validator'];
         $validator->resolver(function($translator, $data, $rules, $messages){
             return new HelloValidator($translator, $data, $rules, $messages);
