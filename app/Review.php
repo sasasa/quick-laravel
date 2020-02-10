@@ -10,4 +10,8 @@ class Review extends Model
     {
         return $this->belongsTo('App\Book');
     }
+    public function getData()
+    {
+        return $this->body. "\n(". $this->name . ")";
+    }
 }

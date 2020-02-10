@@ -17,6 +17,7 @@
       <th>出版社</th>
       <th>刊行日</th>
       <th></th>
+      <th></th>
     </tr>
     @foreach($records as $index => $record)
     <tr>
@@ -25,6 +26,17 @@
       <td>{{$record->price}}</td>
       <td>{{$record->publisher}}</td>
       <td>{{$record->published}}</td>
+      <td>
+        @if($record->reviews != null)
+        <table>
+          @foreach ($record->reviews as $review)
+            <tr>
+              <td>{{$review->getData()}}</td>
+            </tr>
+          @endforeach
+        </table>
+        @endif
+      </td>
       <td>
         <a href="/save/{{$record->id}}/edit">編集</a>
         <a href="/save/{{$record->id}}">削除</a>
