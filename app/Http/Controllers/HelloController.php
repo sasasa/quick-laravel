@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Book;
+use DB;
 
 class HelloController extends Controller
 {
@@ -22,9 +23,12 @@ class HelloController extends Controller
 
     public function list()
     {
+        // DB::enableQueryLog();
         $data = [
-            'records' => Book::all()
+            'records' => Book::has('reviews')->with('reviews')->get(),
+            'has_not_records' => Book::doesntHave('reviews')->get(),
         ];
+        // dd(DB::getQueryLog());
         sleep(1);
         return view('hello.list', $data);
     }

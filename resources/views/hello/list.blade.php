@@ -9,6 +9,7 @@
 </head>
 <body>
   {{$view_composer}}
+  <caption>レビューがあるものだけ</caption>
   <table class="table">
     <tr>
       <th>No.</th>
@@ -45,6 +46,35 @@
     @endforeach
   </table>
 
+  <caption>レビューが無いものだけ</caption>
+  <table class="table">
+    <tr>
+      <th>No.</th>
+      <th>書名</th>
+      <th>価格</th>
+      <th>出版社</th>
+      <th>刊行日</th>
+      <th></th>
+      <th></th>
+    </tr>
+    @foreach($has_not_records as $index => $record)
+    <tr>
+      <td>{{$index + 1}}</td>
+      <td>{{$record->title}}</td>
+      <td>{{$record->price}}</td>
+      <td>{{$record->publisher}}</td>
+      <td>{{$record->published}}</td>
+      <td>
+      </td>
+      <td>
+        <a href="/save/{{$record->id}}/edit">編集</a>
+        <a href="/save/{{$record->id}}">削除</a>
+      </td>
+    </tr>
+    @endforeach
+  </table>
+
+  <caption>コレクションビューの呼び出し</caption>
   <table class="table">
     <tr>
       <th>書名</th>
