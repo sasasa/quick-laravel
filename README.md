@@ -24,6 +24,8 @@ SHOW TABLES FROM quick_laravel;
 
  php artisan make:request HelloRequest
 
+ php artisan make:rule NumberRule
+
  php artisan make:middleware LogMiddleware
  php artisan make:middleware ElapsedTimeMiddleware
 

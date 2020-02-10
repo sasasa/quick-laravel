@@ -27,7 +27,7 @@ class StoreRequest extends FormRequest
         return [
             'isbn'     => 'required|unique:books,isbn',
             'title'    => 'required|string|max:20',
-            'price'    => 'integer|min:0|hello',
+            'price'    => ['integer','min:0', 'hello', new NumberRule(4)],
             'publisher'=> 'required|in:翔泳社,技術評論社,日経BP,秀和システム,インプレス',
             'published'=> 'required|date',
             'consent'  => 'accepted',

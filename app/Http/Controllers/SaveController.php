@@ -36,6 +36,7 @@ class SaveController extends Controller
         // $this->validate($req, Book::$rules);
         $b = Book::find($id);
 
+        // isbnの重複チェック自分のISBNはのぞいてチェックする
         $req->validate([
             'isbn' => [Rule::unique('books', 'isbn')->whereNot('isbn', $b->isbn)]
         ]);
