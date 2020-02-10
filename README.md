@@ -35,12 +35,16 @@ SHOW TABLES FROM quick_laravel;
  php artisan make:migration create_books_table
  php artisan make:migration create_reviews_table
 
+ php artisan make:migration add_deleted_to_reviews_table --table=reviews
+
  php artisan make:seeder BooksTableSeeder
  php artisan make:seeder ReviewsTableSeeder
 
  php artisan migrate
  一つロールバック
  php artisan migrate:rollback
+ php artisan migrate:rollback --step=1
+
  全ロールバック
  php artisan migrate:reset
  全ロールバックしてマイグレート

@@ -32,4 +32,17 @@ class HelloController extends Controller
         sleep(1);
         return view('hello.list', $data);
     }
+    public function search(Request $req)
+    {
+        $min = $req->min * 1;
+        $max = $min + 1000;
+        // DB::enableQueryLog();
+        $data = [
+            'records' => Book::ageGreaterThan($min)
+                                ->ageLessThan($max)->get(),
+            'min' => $min,
+        ];
+        // dd(DB::getQueryLog());
+        return view('hello.list', $data);
+    }
 }

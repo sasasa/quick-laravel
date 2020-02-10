@@ -22,4 +22,14 @@ class Book extends Model
     {
         return $this->hasMany('App\Review');
     }
+
+    public function scopeAgeGreaterThan($q, $n)
+    {
+        return $q->where('price', '>=', $n);
+    }
+
+    public function scopeAgeLessThan($q, $n)
+    {
+        return $q->where('price', '<=', $n);
+    }
 }

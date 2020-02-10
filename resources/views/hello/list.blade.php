@@ -8,6 +8,13 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+  <form method="POST" action="/hello/search">
+  @csrf
+  <label for="min">値段の絞り込み+1000円</label>
+  <input type="text" name="min" id="min" value="{{isset($min)? $min : ""}}">
+  <input type="submit" value="検索">
+  </form>
+
   {{$view_composer}}
   <caption>レビューがあるものだけ</caption>
   <table class="table">
@@ -46,6 +53,7 @@
     @endforeach
   </table>
 
+  @isset($has_not_records)
   <caption>レビューが無いものだけ</caption>
   <table class="table">
     <tr>
@@ -73,6 +81,7 @@
     </tr>
     @endforeach
   </table>
+  @endisset
 
   <caption>コレクションビューの呼び出し</caption>
   <table class="table">
