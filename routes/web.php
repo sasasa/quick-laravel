@@ -117,7 +117,7 @@ Route::get('save/{id}','SaveController@show');
 Route::delete('save/{id}','SaveController@destroy');
 // Route::resource('save', 'SaveController');
 
-Route::resource('reviews', 'ReviewsController');
+Route::resource('reviews', 'ReviewsController')->middleware('verified');
 
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
