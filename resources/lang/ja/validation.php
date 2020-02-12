@@ -118,6 +118,10 @@ return [
         'name'   => '名前',
         'body'   => '本文',
         'book_id'=> '書籍',
+
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
+        'password_confirmation' => 'パスワード（確認）',
     ],
 
 ];

@@ -119,10 +119,11 @@ Route::delete('save/{id}','SaveController@destroy');
 
 Route::resource('reviews', 'ReviewsController');
 
+Auth::routes(['verify' => true]);
+Route::get('/home', 'HomeController@index')->name('home');
+
+
 
 Route::fallback(function(){
     return view('route.error');
 });
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

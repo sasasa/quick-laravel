@@ -13,9 +13,9 @@ class ReviewsController extends Controller
     {
         $user = Auth::user();
         $sort = $request->sort;
-        // if empty($sort) {
-
-        // }
+        if(empty($sort)) {
+            $sort = 'book_id';
+        }
         return view('reviews.index', [
             'reviews' => Review::orderBy($sort, 'asc')->paginate(3),
             'sort' => $sort,

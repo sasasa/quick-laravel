@@ -63,6 +63,8 @@ SHOW TABLES FROM quick_laravel;
  php artisan ui vue --auth
  npm install
  npm run dev
+
+ php artisan vendor:publish --tag=laravel-notifications
 ```
 
 
