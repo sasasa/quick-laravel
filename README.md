@@ -14,6 +14,7 @@ SHOW TABLES FROM quick_laravel;
 
 ```
  php artisan make:controller ArticleController --resource --model=Ariticle
+ php artisan make:controller ReviewsController --resource
 
  php artisan make:controller StateController
 
@@ -35,6 +36,7 @@ SHOW TABLES FROM quick_laravel;
  php artisan make:migration create_books_table
  php artisan make:migration create_reviews_table
 
+カラム追加
  php artisan make:migration add_deleted_to_reviews_table --table=reviews
 
  php artisan make:seeder BooksTableSeeder
@@ -54,6 +56,9 @@ SHOW TABLES FROM quick_laravel;
  
  php artisan db:seed --class=BooksTableSeeder
 
+ php artisan vendor:publish --tag=laravel-pagination
+
+ composer require "laravelcollective/html"
 
 ```
 

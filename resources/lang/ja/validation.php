@@ -105,15 +105,19 @@ return [
     */
 
     'attributes' => [
-      'isbn' => 'ISBNコード',
-      'title' => '書名',
-      'price' => '価格',
-      'publisher' => '出版社',
-      'published' => '刊行日',
-      'consent' => 'プライバシーポリシー',
-      'password' => 'パスワード',
+        'isbn' => 'ISBNコード',
+        'title' => '書名',
+        'price' => '価格',
+        'publisher' => '出版社',
+        'published' => '刊行日',
+        'consent' => 'プライバシーポリシー',
+        'password' => 'パスワード',
 
-      'upfile' => 'アップロード'
+        'upfile' => 'アップロード',
+
+        'name'   => '名前',
+        'body'   => '本文',
+        'book_id'=> '書籍',
     ],
 
 ];

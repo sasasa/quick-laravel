@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Review extends Model
 {
+    public static $rules = [
+        'name'    => 'required|string|max:10',
+        'body'    => 'required|string|max:400',
+        'book_id'    => 'required|integer',
+    ];
+    
     protected $fillable = ['book_id', 'name', 'body'];
 
     // グローバルスコープは関連にも影響するので使いにくいためコメント
