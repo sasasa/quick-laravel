@@ -59,7 +59,10 @@ SHOW TABLES FROM quick_laravel;
  php artisan vendor:publish --tag=laravel-pagination
 
  composer require "laravelcollective/html"
-
+ composer require "laravel/ui"
+ php artisan ui vue --auth
+ npm install
+ npm run dev
 ```
 
 

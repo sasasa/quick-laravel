@@ -23,6 +23,13 @@
   @endslot
   @endcomponent
 
+  @if (Auth::check())
+    <p>USER: {{$user->name. '('. $user->email. ')'}}</p>
+  @else
+    ログインしていません。<a href="/login">ログイン</a>|
+    <a href="/register">登録</a>
+  @endif
+
   <table class="table">
     <tr>
       <th><a href="/reviews?sort=book_id">書籍</a></th>

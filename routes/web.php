@@ -123,3 +123,6 @@ Route::resource('reviews', 'ReviewsController');
 Route::fallback(function(){
     return view('route.error');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
