@@ -80,6 +80,8 @@ SHOW TABLES FROM quick_laravel;
  npm run dev
 
  php artisan vendor:publish --tag=laravel-notifications
+
+ php artisan storage:link
 ```
 
 

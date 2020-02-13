@@ -16,7 +16,13 @@
 <p>{{$result}}</p>
 </form>
 
+@isset($path)
+<p>{{$path}}</p>
+@endisset
+
 @isset($name)
 <img src="/ctrl/uploadimage/{{$name}}">
+<img src="/ctrl/imagedownload/{{$name}}">
 @endisset
+
 @endsection

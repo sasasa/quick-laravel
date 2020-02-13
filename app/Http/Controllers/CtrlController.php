@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CtrlController extends Controller
 {
@@ -137,17 +138,23 @@ class CtrlController extends Controller
     {
         return view('ctrl.upload', ['result'=>'']);
     }
-    public function uploadimage($name)
+    public function uploadimage(string $name)
     {
-        if(strpos($name,'..') !== false){
+        if(strpos($name, '..') !== false){
             return "";
         }
-        $fullPath = storage_path('app'. DIRECTORY_SEPARATOR. 'files'. DIRECTORY_SEPARATOR. $name);
+        $fullPath = storage_path('app'. DIRECTORY_SEPARATOR. 'public'. DIRECTORY_SEPARATOR. $name);
         $mimeType = mime_content_type($fullPath);
 
         return response()->file($fullPath, [
             'Content-type' => $mimeType,
         ]);
+    }
+    public function imagedownload(string $name) {
+        if(strpos($name, '..') !== false){
+            return "";
+        }
+        return Storage::disk('public')->download($name);
     }
     public function uploadfile(Request $req)
     {
@@ -171,9 +178,13 @@ class CtrlController extends Controller
         $mimeType = $file->getClientMimeType();
 
         // アップロードファイルを保存
-        $file->storeAs('files', $name);
+        $file->storeAs('public', $name);
+        $url = Storage::disk('public')->url($name);
+        $path = storage_path('app'.DIRECTORY_SEPARATOR. 'public'. DIRECTORY_SEPARATOR. $name);
+
         return view('ctrl.upload', [
-            'result' => $name. 'をアップロードしました。'. storage_path('app'.DIRECTORY_SEPARATOR. 'files'. DIRECTORY_SEPARATOR. $name). ": ". $mimeType,
+            'result' => $name. 'をアップロードしました。'.$url . ": ". $mimeType,
+            'path' => $path,
             'name' => $name,
         ]);
     }
