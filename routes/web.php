@@ -119,6 +119,11 @@ Route::delete('save/{id}','SaveController@destroy');
 
 Route::resource('reviews', 'ReviewsController')->middleware('verified');
 
+Route::get('skilluser', 'SkillUserController@create')->middleware('verified');
+Route::post('skilluser', 'SkillUserController@store')->middleware('verified');
+
+
+
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 

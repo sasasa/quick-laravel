@@ -38,4 +38,31 @@ class User extends Authenticatable implements MustVerifyEmailContract
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function skills()
+    {
+        return $this->belongsToMany('App\Skill');
+    }
+
+    public function skillIds()
+    {
+        return array_map(function($skill){
+            return $skill['id'];
+        }, $this->skills()->get()->toArray());
+    }
+
+    public function skillSet($skills)
+    {
+        if (is_array($skills)) {
+            // ひとつでも送られた時
+            $this->skills()->detach(); //ユーザの登録済みのスキルを全て削除
+            $this->skills()->attach($skills); //改めて登録
+            return true;
+        } else {
+            // 送られないとき
+            $this->skills()->detach(); //ユーザの登録済みのスキルを全て削除
+            \Log::warning('User#skillSet'. $skills);
+            return false;
+        }
+    }
 }

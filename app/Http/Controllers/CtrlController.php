@@ -162,7 +162,7 @@ class CtrlController extends Controller
             return redirect('ctrl/upload')->with('error', 'アップロードに失敗しました。');
         }
         $this->validate($req, [
-            'upfile' => 'image|dimensions:max_width=600',
+            'upfile' => 'image|mimes:jpeg,png,jpg,gif|dimensions:max_width=600',
         ]);
 
 

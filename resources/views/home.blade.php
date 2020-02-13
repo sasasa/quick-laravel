@@ -20,6 +20,8 @@
                         <li><a href="/view/comp">コンポーネント利用</a></li>
                         <li><a href="/ctrl/upload">アップロード</a></li>
                         <li><a href="/reviews">レビュー一覧</a></li>
+                        <li><a href="/skilluser">スキル設定</a></li>
+                        
                     </ul>
                 </div>
             </div>

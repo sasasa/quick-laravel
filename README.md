@@ -1,4 +1,7 @@
 ```
+composer global require laravel/installer
+laravel new quick-laravel
+
 CREATE DATABASE quick_laravel CHARACTER SET utf8;
 GRANT ALL PRIVILEGES ON quick_laravel.* TO quickusr@localhost IDENTIFIED BY 'quickpass';
 USE quick_laravel;
@@ -15,13 +18,16 @@ SHOW TABLES FROM quick_laravel;
 ```
  php artisan make:controller ArticleController --resource --model=Ariticle
  php artisan make:controller ReviewsController --resource
+ php artisan make:controller SkillUserController
 
  php artisan make:controller StateController
 
  php artisan make:provider HelloServiceProvider
 
- php artisan make:model Book
- php artisan make:model Review
+-mオプションでマイグレーションファイルが同時に作成
+ php artisan make:model Book -m
+ php artisan make:model Review -m
+ php artisan make:model Skill -m
 
  php artisan make:request HelloRequest
 
@@ -36,16 +42,24 @@ SHOW TABLES FROM quick_laravel;
  php artisan make:migration create_books_table
  php artisan make:migration create_reviews_table
 
+ php artisan make:migration create_skills_table
+ php artisan make:migration create_skill_user_table
+
+
 カラム追加
  php artisan make:migration add_deleted_to_reviews_table --table=reviews
 
  php artisan make:seeder BooksTableSeeder
  php artisan make:seeder ReviewsTableSeeder
+ php artisan make:seeder SkillsTableSeeder
 
  php artisan migrate
  一つロールバック
  php artisan migrate:rollback
  php artisan migrate:rollback --step=1
+
+ 一旦全てのテーブルを削除してマイグレーションし直す
+ php artisan migrate:fresh
 
  全ロールバック
  php artisan migrate:reset
@@ -55,6 +69,7 @@ SHOW TABLES FROM quick_laravel;
  php artisan migrate:refresh --seed
  
  php artisan db:seed --class=BooksTableSeeder
+ php artisan db:seed --class=SkillsTableSeeder
 
  php artisan vendor:publish --tag=laravel-pagination
 
