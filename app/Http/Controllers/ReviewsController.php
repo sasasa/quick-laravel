@@ -40,34 +40,36 @@ class ReviewsController extends Controller
         ->with('store', "レビューID：". $review->id. 'を作成しました。');
     }
 
-    public function show($id)
+    public function show(Review $review)
     {
         return view('reviews.show', [
-            'form' => Review::findorfail($id),
+            // 'form' => Review::findorfail($id),
+            'form' => $review,
         ]);
     }
 
-    public function edit($id)
+    public function edit(Review $review)
     {
         return view('reviews.edit', [
-            'form' => Review::findorfail($id),
+            // 'form' => Review::findorfail($id),
+            'form' => $review,
             'books' => Book::all()
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Review $review)
     {
         $this->validate($request, Review::$rules);
-        $review = Review::findorfail($id);
+        // $review = Review::findorfail($id);
         $form = $request->all();
         $review->fill($form)->save();
         return redirect('/reviews')
         ->with('update', "レビューID：". $review->id. 'を更新しました。');
     }
 
-    public function destroy($id)
+    public function destroy(Review $review)
     {
-        $review = Review::findorfail($id);
+        // $review = Review::findorfail($id);
         $review->delete();
         return redirect('/reviews')
         ->with('delete', "レビューID：". $review->id. 'を削除しました。');
