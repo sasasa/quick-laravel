@@ -8,7 +8,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-  <img src="https://wings.msn.to/image/wings.jpg" title="ロゴ"><hr>
+  <a href="/">
+    <img src="https://wings.msn.to/image/wings.jpg" title="ロゴ"><hr>
+  </a>
   <!-- b.mainコンテンツの置き場所 -->
   @section('main')
     <p>既定のコンテンツ</p>

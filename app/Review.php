@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Laravel\Scout\Searchable;
 
 class Review extends Model
 {
+    use Searchable;
+    
     public static $rules = [
         'name'    => 'required|string|max:10',
         'body'    => 'required|string|max:400',

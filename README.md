@@ -82,6 +82,16 @@ SHOW TABLES FROM quick_laravel;
  php artisan vendor:publish --tag=laravel-notifications
 
  php artisan storage:link
+
+
+ composer require laravel/scout
+ php.iniでextension=sqlite3のコメントアウト
+ composer require teamtnt/tntsearch
+ composer require teamtnt/laravel-scout-tntsearch-driver
+
+ php artisan vendor:publish --provider=Laravel\Scout\ScoutServiceProvider
+ php artisan scout:import "App\Review"
+ php artisan scout:flush "App\Review"
 ```
 
 

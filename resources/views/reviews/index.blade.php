@@ -30,6 +30,11 @@
     <a href="/register">登録</a>
   @endif
 
+  <form class="form-inline my-5" action="/reviews" method="get">
+    <input type="search" name="search" value="{{$search}}" class="form-control mr-2">
+    <input type="submit" value="検索" class="btn btn-info btn-sm">
+  </form>
+
   <table class="table">
     <tr>
       <th><a href="/reviews?sort=book_id">書籍</a></th>

@@ -11,15 +11,23 @@ class ReviewsController extends Controller
 {
     public function index(Request $request)
     {
+        // Review::get(['*'])->searchable();
         $user = Auth::user();
         $sort = $request->sort;
-        if(empty($sort)) {
+        $search = $request->search;
+        if (empty($sort)) {
             $sort = 'book_id';
         }
+        if (empty($search)) {
+            $reviews = Review::orderBy($sort, 'asc')->paginate(3);
+        } else {
+            $reviews = Review::search($search)->orderBy($sort, 'asc')->paginate(3);
+        }
         return view('reviews.index', [
-            'reviews' => Review::orderBy($sort, 'asc')->paginate(3),
+            'reviews' => $reviews,
             'sort' => $sort,
             'user' => $user,
+            'search' => $search,
         ]);
     }
 
