@@ -16,15 +16,16 @@
             </label>
           @endforeach
         </div>
-        <div class="form-group">
+        <div class="form-group d-flex justify-content-end">
           <input type="submit" value="送信" class="btn btn-primary btn-lg" >
         </div>
       </form>
 
       <form method="POST" action="/skilluser">
         @csrf
-        <div class="form-group">
-          <label for="skills">スキル</label>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label" for="skills">スキル</label>
+          <div class="col-sm-10">
           {{
             Form::select('skills[]',
             Arr::pluck($skills, 'name', 'id'),
@@ -36,8 +37,9 @@
               'size' => $skills->count()
             ])
           }}
+          </div>
         </div>
-        <div class="form-group">
+        <div class="form-group d-flex justify-content-end">
           <input type="submit" value="送信" class="btn btn-primary btn-lg" >
         </div>
       </form>
