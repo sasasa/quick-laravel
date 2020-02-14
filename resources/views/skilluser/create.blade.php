@@ -13,8 +13,29 @@
           @foreach ($skills as $skill)
             <label class="form-check-label" for="skill_{{$skill->id}}">
               <input name="skills[]" class="form-check-input" type="checkbox" value="{{$skill->id}}" id="skill_{{$skill->id}}" {{in_array($skill->id, $userskillids) ? "checked" : null}}>{{$skill->name}}
-          </label><br>
+            </label><br>
           @endforeach
+        </div>
+        <div class="form-group">
+          <input type="submit" value="送信" class="btn btn-primary btn-lg" >
+        </div>
+      </form>
+
+      <form method="POST" action="/skilluser">
+        @csrf
+        <div class="form-group">
+          <label for="skills">スキル</label>
+          {{
+            Form::select('skills[]',
+            Arr::pluck($skills, 'name', 'id'),
+            $userskillids,
+            [
+              'class' => "form-control",
+              'id' => "skills",
+              'multiple' => true,
+              'size' => $skills->count()
+            ])
+          }}
         </div>
         <div class="form-group">
           <input type="submit" value="送信" class="btn btn-primary btn-lg" >
