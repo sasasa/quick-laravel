@@ -92,6 +92,18 @@ SHOW TABLES FROM quick_laravel;
  php artisan vendor:publish --provider=Laravel\Scout\ScoutServiceProvider
  php artisan scout:import "App\Review"
  php artisan scout:flush "App\Review"
+
+ php artisan make:job MyJob
+ php artisan make:provider MyJobProvider
+
+ php artisan queue:table
+ php artisan queue:work
+ php artisan queue:work --once
+ php artisan queue:work --stop-when-empty
+ php artisan queue:work --queue=name1,name2
+ .env変更
+ QUEUE_CONNECTION=database
+ QUEUE_DRIVER=database
 ```
 
 

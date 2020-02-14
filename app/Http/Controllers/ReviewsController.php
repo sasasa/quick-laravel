@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Review;
 use App\Book;
+use App\Jobs\MyJob;
 use Illuminate\Support\Facades\Auth;
 
 class ReviewsController extends Controller
@@ -13,6 +14,8 @@ class ReviewsController extends Controller
     {
         // Review::get(['*'])->searchable();
         $user = Auth::user();
+        MyJob::dispatch($user)->delay(now()->addMinutes(1));
+
         $sort = $request->sort;
         $search = $request->search;
         if (empty($sort)) {
