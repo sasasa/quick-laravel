@@ -85,6 +85,7 @@ SHOW TABLES FROM quick_laravel;
 
 
  composer require laravel/scout
+ composer require algolia/algoliasearch-client-php
  php.iniでextension=sqlite3のコメントアウト
  composer require teamtnt/tntsearch
  composer require teamtnt/laravel-scout-tntsearch-driver

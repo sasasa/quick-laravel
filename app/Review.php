@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Laravel\Scout\Searchable;
 
+
 class Review extends Model
 {
     use Searchable;
@@ -31,11 +32,26 @@ class Review extends Model
     {
         return $this->belongsTo('App\Book');
     }
+    
     public function getData()
     {
         if($this->deleted) {
             return "";
         }
         return $this->body. "\n(". $this->name . ")";
+    }
+    
+    public function searchableAs()
+    {
+        return 'reviews_index';
+    }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        // $array = $this->transform($array);
+        $array['book_title'] = $this->book->title;
+
+        return $array;
     }
 }

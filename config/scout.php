@@ -15,7 +15,8 @@ return [
     |
     */
 
-    'driver' => env('SCOUT_DRIVER', 'tntsearch'),
+    'driver' => env('SCOUT_DRIVER', 'algolia'),
+    // 'driver' => env('SCOUT_DRIVER', 'tntsearch'),
 
     'tntsearch' => [
         'storage' => storage_path(), //place where the index files will be stored 

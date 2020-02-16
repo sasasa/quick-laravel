@@ -23,6 +23,9 @@
                         <li><a href="/skilluser">スキル設定</a></li>
                         
                     </ul>
+                    @php
+                    phpinfo()
+                    @endphp
                 </div>
             </div>
         </div>

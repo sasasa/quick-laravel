@@ -61,7 +61,7 @@
     </tr>
     @endforeach
   </table>
-  {{ $reviews->appends(['sort'=>$sort])->links('vendor.pagination.bootstrap-4') }}
+  {{ $reviews->appends(['sort'=>$sort, 'search'=>$search])->links('vendor.pagination.bootstrap-4') }}
   {{-- {{ $reviews->appends(['sort'=>$sort])->links('vendor.pagination.simple-bootstrap-4') }} --}}
   {{-- {{ $reviews->appends(['sort'=>$sort])->links('vendor.pagination.simple-default') }} --}}
   <a href="/reviews/create" class="btn btn-lg btn-success mt-5">新規作成</a>

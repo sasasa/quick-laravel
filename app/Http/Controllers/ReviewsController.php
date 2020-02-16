@@ -7,7 +7,7 @@ use App\Review;
 use App\Book;
 use App\Jobs\MyJob;
 use Illuminate\Support\Facades\Auth;
-
+use DB;
 class ReviewsController extends Controller
 {
     public function index(Request $request)
@@ -24,6 +24,12 @@ class ReviewsController extends Controller
         if (empty($search)) {
             $reviews = Review::orderBy($sort, 'asc')->paginate(3);
         } else {
+            // DB::enableQueryLog();
+            // $reviews = Review::with(['book'])->whereHas('book', function($query) use ($search){
+            //     $query->where('title', $search);
+            // })->paginate(3);
+            // dd(DB::getQueryLog());
+
             $reviews = Review::search($search)->orderBy($sort, 'asc')->paginate(3);
         }
         return view('reviews.index', [
