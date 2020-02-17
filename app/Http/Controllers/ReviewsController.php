@@ -15,7 +15,6 @@ class ReviewsController extends Controller
         // Review::get(['*'])->searchable();
         $user = Auth::user();
         MyJob::dispatch($user)->delay(now()->addMinutes(1));
-
         $sort = $request->sort;
         $search = $request->search;
         if (empty($sort)) {

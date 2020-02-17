@@ -131,6 +131,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::fallback(function(){
-    return view('route.error');
-});
+// Route::fallback(function(){
+//     return view('route.error');
+// });

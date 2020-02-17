@@ -105,6 +105,11 @@ SHOW TABLES FROM quick_laravel;
  .env変更
  QUEUE_CONNECTION=database
  QUEUE_DRIVER=database
+
+
+ php artisan vendor:publish --tag=laravel-errors
+
+
 ```
 
 
