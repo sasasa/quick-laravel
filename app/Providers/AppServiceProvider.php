@@ -23,6 +23,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // app()->resolving(function ($obj, $app){
+        //     if (is_object($obj)) {
+        //         echo \get_class($obj). "<br>";
+        //     } else {
+        //         echo $obj. '<br>';
+        //     }
+        // });
     }
 }

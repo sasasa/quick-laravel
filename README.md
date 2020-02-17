@@ -23,6 +23,7 @@ SHOW TABLES FROM quick_laravel;
  php artisan make:controller StateController
 
  php artisan make:provider HelloServiceProvider
+ php artisan make:provider MyServiceProvider
 
 -mオプションでマイグレーションファイルが同時に作成
  php artisan make:model Book -m

@@ -15,5 +15,12 @@
     'alert_title' => "二回目のサブビュー",
     'slot' => 'サブビューでは親テンプレートの変数はそのまま使えます。',
   ])
+
+  <p>{{$msg}}</p>
+  <ul>
+  @foreach ($data as $item)
+    <li>{{$item}}</li>
+  @endforeach
+  </ul>
 @endsection
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\MyClasses\MyServiceInterface;
 
 class ViewController extends Controller
 {
@@ -66,8 +67,12 @@ class ViewController extends Controller
             'msg' => 'こんにちは世界とテンプレート'
         ]);
     }
-    public function comp()
+    public function comp(MyServiceInterface $myservice)
     {
-        return view('view.comp', []);
+        $myservice->setId(2);
+        return view('view.comp', [
+            'msg' => $myservice->say(),
+            'data' => $myservice->alldata(),
+        ]);
     }
 }
