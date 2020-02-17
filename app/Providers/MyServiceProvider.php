@@ -18,6 +18,10 @@ class MyServiceProvider extends ServiceProvider
             'App\MyClasses\MyServiceInterface',
             'App\MyClasses\PowerMyService'
         );
+        app()->singleton(
+            'myservice',
+            'App\MyClasses\PowerMyService'
+        );
     }
 
     /**

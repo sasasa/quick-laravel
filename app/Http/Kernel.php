@@ -44,7 +44,8 @@ class Kernel extends HttpKernel
         ],
 
         'debug' => [
-            \App\Http\Middleware\LogMiddleware::class
+            \App\Http\Middleware\LogMiddleware::class,
+            \App\Http\Middleware\LogSQLMiddleware::class,
         ],
     ];
 

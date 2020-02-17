@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MyClasses\MyServiceInterface;
+use App\Facades\MyService;
 
 class ViewController extends Controller
 {
@@ -70,9 +71,12 @@ class ViewController extends Controller
     public function comp(MyServiceInterface $myservice)
     {
         $myservice->setId(2);
+        MyService::setId(3);
         return view('view.comp', [
-            'msg' => $myservice->say(),
-            'data' => $myservice->alldata(),
+            'msg1' => $myservice->say(),
+            'data1' => $myservice->alldata(),
+            'msg2' => MyService::say(),
+            'data2' => MyService::alldata(),
         ]);
     }
 }

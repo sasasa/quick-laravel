@@ -119,7 +119,10 @@ Route::patch('save/{id}','SaveController@update');
 Route::get('save/{id}','SaveController@show');
 Route::delete('save/{id}','SaveController@destroy');
 // Route::resource('save', 'SaveController');
-Route::middleware([LogSQLMiddleware::class])->group(function() {
+
+
+// Route::middleware([LogSQLMiddleware::class])->group(function() {
+Route::middleware(['debug'])->group(function() {
     Route::resource('reviews', 'ReviewsController')->middleware('verified');
 });
 
