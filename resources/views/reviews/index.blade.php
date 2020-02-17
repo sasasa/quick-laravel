@@ -30,16 +30,34 @@
     <a href="/register">登録</a>
   @endif
 
-  <form class="form-inline my-5" action="/reviews" method="get">
+  <form class="form-inline my-5" action="/reviews?sort={{$sort}}&" method="get">
     <input type="search" name="search" value="{{$search}}" class="form-control mr-2">
     <input type="submit" value="検索" class="btn btn-info btn-sm">
   </form>
 
   <table class="table">
     <tr>
-      <th><a href="/reviews?sort=book_id">書籍</a></th>
-      <th><a href="/reviews?sort=name">名前</a></th>
-      <th style="width:360px;"><a href="/reviews?sort=body">本文</a></th>
+      <th>
+        <a href="/reviews?sort=book_id&next={{$next}}">書籍
+          @if($sort == 'book_id')
+            {{$actual == 'asc' ? '↑':'↓'}}
+          @endif
+        </a>
+      </th>
+      <th>
+        <a href="/reviews?sort=name&next={{$next}}">名前
+          @if($sort == 'name')
+            {{$actual == 'asc' ? '↑':'↓'}}
+          @endif
+        </a>
+      </th>
+      <th style="width:360px;">
+        <a href="/reviews?sort=body&next={{$next}}">本文
+          @if($sort == 'body')
+            {{$actual == 'asc' ? '↑':'↓'}}
+          @endif
+        </a>
+      </th>
       <th></th>
       <th></th>
       <th></th>
@@ -61,7 +79,13 @@
     </tr>
     @endforeach
   </table>
-  {{ $reviews->appends(['sort'=>$sort, 'search'=>$search])->links('vendor.pagination.bootstrap-4') }}
+  {{ 
+    $reviews->appends([
+      'sort' => $sort,
+      'search' => $search,
+      'actual' => $actual,
+    ])->links('vendor.pagination.bootstrap-4')
+  }}
   {{-- {{ $reviews->appends(['sort'=>$sort])->links('vendor.pagination.simple-bootstrap-4') }} --}}
   {{-- {{ $reviews->appends(['sort'=>$sort])->links('vendor.pagination.simple-default') }} --}}
   <a href="/reviews/create" class="btn btn-lg btn-success mt-5">新規作成</a>

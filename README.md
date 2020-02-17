@@ -35,6 +35,7 @@ SHOW TABLES FROM quick_laravel;
 
  php artisan make:middleware LogMiddleware
  php artisan make:middleware ElapsedTimeMiddleware
+ php artisan make:middleware LogSQLMiddleware
 
  php artisan session:table
  php artisan migrate

@@ -2,6 +2,7 @@
 use App\Http\Middleware\LogMiddleware;
 use App\Http\Middleware\UpperMiddleware;
 use App\Http\Middleware\ElapsedTimeMiddleware;
+use App\Http\Middleware\LogSQLMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -118,8 +119,9 @@ Route::patch('save/{id}','SaveController@update');
 Route::get('save/{id}','SaveController@show');
 Route::delete('save/{id}','SaveController@destroy');
 // Route::resource('save', 'SaveController');
-
-Route::resource('reviews', 'ReviewsController')->middleware('verified');
+Route::middleware([LogSQLMiddleware::class])->group(function() {
+    Route::resource('reviews', 'ReviewsController')->middleware('verified');
+});
 
 Route::get('skilluser', 'SkillUserController@create')->middleware('verified');
 Route::post('skilluser', 'SkillUserController@store')->middleware('verified');

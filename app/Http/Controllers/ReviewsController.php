@@ -16,26 +16,38 @@ class ReviewsController extends Controller
         $user = Auth::user();
         MyJob::dispatch($user)->delay(now()->addMinutes(1));
         $sort = $request->sort;
+        $next = $request->next;
         $search = $request->search;
         if (empty($sort)) {
             $sort = 'book_id';
         }
-        if (empty($search)) {
-            $reviews = Review::orderBy($sort, 'asc')->paginate(3);
-        } else {
-            // DB::enableQueryLog();
-            // $reviews = Review::with(['book'])->whereHas('book', function($query) use ($search){
-            //     $query->where('title', $search);
-            // })->paginate(3);
-            // dd(DB::getQueryLog());
+        if (empty($next)) {
+            $next = 'desc';
+            $actual = 'asc';
+        } else if ($next == 'asc') {
+            $next = 'desc';
+            $actual = 'asc';
+        } else if ($next == 'desc') {
+            $next = 'asc';
+            $actual = 'desc';
+        }
+        if (!empty($request->actual)) {
+            $actual = $request->actual;
+        }
 
-            $reviews = Review::search($search)->orderBy($sort, 'asc')->paginate(3);
+        if (empty($search)) {
+            $reviews = Review::with('book')->orderBy($sort, $actual)->paginate(3);
+        } else {
+            // algolia OR tnt
+            $reviews = Review::search($search)->orderBy($sort, $actual)->paginate(3);
         }
         return view('reviews.index', [
             'reviews' => $reviews,
             'sort' => $sort,
             'user' => $user,
             'search' => $search,
+            'next' => $next,
+            'actual' => $actual,
         ]);
     }
 
