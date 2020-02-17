@@ -20,6 +20,7 @@ class LogSQLMiddleware
         $response = $next($request);
         
         $content = $response->content();
+        // ddは処理を止めるがdumpは処理を止めない
         dump(DB::getQueryLog());
 
         return $response;
