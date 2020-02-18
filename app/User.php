@@ -65,8 +65,8 @@ class User extends Authenticatable implements MustVerifyEmailContract
             dump($delete);
 
             // ひとつでも送られた時
-            $this->skills()->detach($delete); //ユーザの登録済みのスキルを全て削除
-            $this->skills()->attach($add); //改めて登録
+            $this->skills()->detach($delete);
+            $this->skills()->attach($add);
             return true;
         } else {
             // 送られないとき
