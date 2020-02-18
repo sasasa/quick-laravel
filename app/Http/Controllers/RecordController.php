@@ -61,6 +61,17 @@ class RecordController extends Controller
         // $result = Book::whereYear('published', '2018')->get();
         return view('hello.list', ['records' => $result]);
     }
+    public function whereMonth()
+    {
+        $result = Book::whereMonth('published', '<=', '12')
+        ->whereYear('published', '<', '2018')->get();
+        // $result = Book::whereYear('published', '2018')->get();
+        return view('hello.list', ['records' => $result]);
+    }
+
+
+
+
     public function and()
     {
         $result = Book::where('publisher', '翔泳社')->where('price', '<', 3000)->get();
