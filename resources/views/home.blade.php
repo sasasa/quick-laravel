@@ -21,6 +21,7 @@
                         <li><a href="/ctrl/upload">アップロード</a></li>
                         <li><a href="/reviews">レビュー一覧</a></li>
                         <li><a href="/skilluser">スキル設定</a></li>
+                        <li><a href="/proficiency">スキル習熟度設定</a></li>
                         <li><a href="/chunkById">テーブルチャンク</a></li>
                         <li><a href="/record/whereYear">レコード、whereYear</a></li>
                         

@@ -130,6 +130,8 @@ Route::middleware(['debug'])->group(function() {
 
 Route::get('skilluser', 'SkillUserController@create')->middleware('verified');
 Route::post('skilluser', 'SkillUserController@store')->middleware('verified');
+Route::get('proficiency', 'SkillUserController@proficiency')->middleware('verified');
+Route::post('proficiency', 'SkillUserController@storeProficiency')->middleware('verified');
 
 
 

@@ -13,11 +13,11 @@ class SkillUserController extends Controller
     {
         $user = Auth::user();
         // DB::enableQueryLog();
+        // dd(DB::getQueryLog());
         return view('skilluser.create', [
             'skills' => Skill::all(),
             'userskillids' => $user->skillIds()
         ]);
-        // dd(DB::getQueryLog());
     }
 
     public function store(Request $req)
@@ -32,4 +32,26 @@ class SkillUserController extends Controller
         ]);
     }
     
+    public function proficiency()
+    {
+        $user = Auth::user();
+        return view('skilluser.proficiency', [
+            'skills' => $user->skills()->get(),
+        ]);
+    }
+
+    public function storeProficiency(Request $req)
+    {
+        $user = Auth::user();
+        // dd($req->skills);
+        foreach ($req->skills as $skillId => $proficiency)
+        {
+            $skill = $user->skills()->find($skillId);
+            // dd($skill);
+            // dd($proficiency);
+            $skill->pivot->proficiency = $proficiency;
+            $skill->pivot->save();
+        }
+        return redirect('proficiency');
+    }
 }

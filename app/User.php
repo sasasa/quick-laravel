@@ -41,7 +41,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     public function skills()
     {
-        return $this->belongsToMany('App\Skill');
+        return $this
+        ->belongsToMany('App\Skill', 'skill_user')
+        ->using(SkillUser::class)->withPivot(['proficiency']);
     }
 
     public function skillIds()
@@ -55,9 +57,16 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function skillSet($skills)
     {
         if (is_array($skills)) {
+
+            $add = collect($skills)->diff($this->skills()->get()->modelKeys());
+            $delete = collect($this->skills()->get()->modelKeys())->diff($skills);
+
+            dump($add);
+            dump($delete);
+
             // ひとつでも送られた時
-            $this->skills()->detach(); //ユーザの登録済みのスキルを全て削除
-            $this->skills()->attach($skills); //改めて登録
+            $this->skills()->detach($delete); //ユーザの登録済みのスキルを全て削除
+            $this->skills()->attach($add); //改めて登録
             return true;
         } else {
             // 送られないとき

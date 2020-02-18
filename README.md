@@ -29,6 +29,9 @@ SHOW TABLES FROM quick_laravel;
  php artisan make:model Book -m
  php artisan make:model Review -m
  php artisan make:model Skill -m
+ php artisan make:model Review -m
+ php artisan make:model SkillUser -m
+
 
  php artisan make:request HelloRequest
 
@@ -47,9 +50,9 @@ SHOW TABLES FROM quick_laravel;
  php artisan make:migration create_skills_table
  php artisan make:migration create_skill_user_table
 
-
 カラム追加
  php artisan make:migration add_deleted_to_reviews_table --table=reviews
+ php artisan make:migration add_proficiency_to_skill_user_table --table=skill_user
 
  php artisan make:seeder BooksTableSeeder
  php artisan make:seeder ReviewsTableSeeder
