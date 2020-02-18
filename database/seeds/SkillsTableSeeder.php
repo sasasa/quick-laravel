@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Skill;
+use Faker\Factory as Faker;
 
 class SkillsTableSeeder extends Seeder
 {
@@ -11,6 +13,9 @@ class SkillsTableSeeder extends Seeder
      */
     public function run()
     {
+        //一括削除
+        Skill::truncate();
+        
         $param = [
             'name' => 'PHP',
             'type' => 1,

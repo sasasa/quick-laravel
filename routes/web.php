@@ -99,6 +99,8 @@ Route::get('record/whereIn','RecordController@whereIn');
 Route::get('record/whereBetween','RecordController@whereBetween');
 Route::get('record/whereNull','RecordController@whereNull');
 Route::get('record/whereYear','RecordController@whereYear');
+Route::get('record/whereMonth','RecordController@whereMonth');
+
 Route::get('record/and','RecordController@and');
 Route::get('record/or','RecordController@or');
 Route::get('record/raw','RecordController@raw');
@@ -133,6 +135,10 @@ Route::post('skilluser', 'SkillUserController@store')->middleware('verified');
 
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('chunkById', 'ChunkController@chunkById');
+Route::get('chunk', 'ChunkController@chunk');
+
 
 
 

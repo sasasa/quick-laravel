@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Review;
+use Faker\Factory as Faker;
 
 class ReviewsTableSeeder extends Seeder
 {
@@ -11,6 +13,8 @@ class ReviewsTableSeeder extends Seeder
      */
     public function run()
     {
+        Review::truncate();
+        
         DB::insert('INSERT INTO reviews (book_id, name, body)VALUES(1, "山田太郎", "環境を作るのに手間取ったが、本の通りにゲームアプリを作ることができて、楽しかった。")');
         
         DB::insert('INSERT INTO reviews (book_id, name, body)VALUES(1, "鈴木智子", "初めてC#に挑戦しました。手順説明が丁寧で、図が多くて、良かったです。")');
