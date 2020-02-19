@@ -14,7 +14,7 @@ class SkillsTableSeeder extends Seeder
     public function run()
     {
         //一括削除
-        Skill::truncate();
+        // Skill::truncate();
         
         $param = [
             'name' => 'PHP',

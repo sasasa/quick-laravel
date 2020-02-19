@@ -141,6 +141,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('chunkById', 'ChunkController@chunkById');
 Route::get('chunk', 'ChunkController@chunk');
 
+Route::get('names', 'CollectionController@names');
+Route::get('emails', 'CollectionController@emails');
+
 
 
 

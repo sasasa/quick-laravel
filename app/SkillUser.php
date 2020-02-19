@@ -9,12 +9,12 @@ class SkillUser extends Pivot
 {
     protected $table = 'skill_user';
     
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
-    // public function skill()
-    // {
-    //     return $this->belongsTo(Skill::class);
-    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function skill()
+    {
+        return $this->belongsTo(Skill::class);
+    }
 }

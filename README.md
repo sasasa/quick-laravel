@@ -21,6 +21,7 @@ SHOW TABLES FROM quick_laravel;
  php artisan make:controller SkillUserController
  php artisan make:controller StateController
  php artisan make:controller ChunkController
+ php artisan make:controller CollectionController
 
  php artisan make:provider HelloServiceProvider
  php artisan make:provider MyServiceProvider
@@ -30,7 +31,7 @@ SHOW TABLES FROM quick_laravel;
  php artisan make:model Review -m
  php artisan make:model Skill -m
  php artisan make:model Review -m
- php artisan make:model SkillUser -m
+ php artisan make:model SkillUser
 
 
  php artisan make:request HelloRequest

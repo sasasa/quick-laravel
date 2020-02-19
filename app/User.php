@@ -7,6 +7,23 @@ use Illuminate\Auth\MustVerifyEmail;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Collection;
+
+class MyCollection extends Collection
+{
+    public function emails()
+    {
+        return $this->map(function($user){
+            return $user->email;
+        });
+    }
+    public function names()
+    {
+        return $this->map(function($user){
+            return $user->name;
+        });
+    }
+}
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -39,6 +56,11 @@ class User extends Authenticatable implements MustVerifyEmailContract
         'email_verified_at' => 'datetime',
     ];
 
+    public function newCollection(array $models = [])
+    {
+        return new MyCollection($models);
+    }
+
     public function skills()
     {
         return $this
@@ -58,8 +80,8 @@ class User extends Authenticatable implements MustVerifyEmailContract
     {
         if (is_array($skills)) {
 
-            $add = collect($skills)->diff($this->skills()->get()->modelKeys());
-            $delete = collect($this->skills()->get()->modelKeys())->diff($skills);
+            $add = collect($skills)->diff($this->skillIds());
+            $delete = collect($this->skillIds())->diff($skills);
 
             dump($add);
             dump($delete);
