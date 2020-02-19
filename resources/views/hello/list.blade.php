@@ -15,6 +15,8 @@
   <input type="submit" value="検索">
   </form>
 
+  <a href="/save/create">新規作成</a>
+
   {{$view_composer}}
   <caption>レビューがあるものだけ</caption>
   <table class="table">
