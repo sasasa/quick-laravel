@@ -32,20 +32,20 @@ class Review extends Model
     {
         return $this->belongsTo('App\Book');
     }
-    
-    public function getData()
+    // アクセサ ->BodyAndName、->body_and_name などでアクセス可能になる
+    public function getBodyAndNameAttribute()
     {
         if($this->deleted) {
             return "";
         }
         return $this->body. "\n(". $this->name . ")";
     }
-    
+    // 全文検索インデックス
     public function searchableAs()
     {
         return 'reviews_index';
     }
-
+    // 全文検索に関連のカラム名も含める
     public function toSearchableArray()
     {
         $array = $this->toArray();

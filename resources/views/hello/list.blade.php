@@ -39,7 +39,7 @@
         <table>
           @foreach ($record->reviews as $review)
             <tr>
-              <td>{{$review->getData()}}</td>
+              <td>{{$review->body_and_name}}</td>
             </tr>
           @endforeach
         </table>
