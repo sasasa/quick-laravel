@@ -12,7 +12,8 @@
         <div class="form-check">
           @foreach ($skills as $skill)
             <label class="mr-5 mb-3 form-check-label" for="skill_{{$skill->id}}">
-              <input name="skills[]" class="form-check-input" type="checkbox" value="{{$skill->id}}" id="skill_{{$skill->id}}" {{in_array($skill->id, $userskillids) ? "checked" : null}}>{{$skill->name}}
+              <input name="skills[]" class="form-check-input" type="checkbox" value="{{$skill->id}}" id="skill_{{$skill->id}}" {{in_array($skill->id, $userskillids) ? "checked" : null}}>
+              {{$skill->name}}({{$skill->type}})
             </label>
           @endforeach
         </div>

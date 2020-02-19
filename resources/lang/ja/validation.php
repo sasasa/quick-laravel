@@ -122,6 +122,12 @@ return [
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'password_confirmation' => 'パスワード（確認）',
+
+        'skill' => [
+            'type' => 'タイプ',
+            'name' => 'スキル名',
+            'users'=> 'ユーザー',
+        ],
     ],
 
 ];

@@ -124,8 +124,9 @@ Route::delete('save/{id}','SaveController@destroy');
 
 
 // Route::middleware([LogSQLMiddleware::class])->group(function() {
-Route::middleware(['debug'])->group(function() {
-    Route::resource('reviews', 'ReviewsController')->middleware('verified');
+Route::middleware(['debug', 'verified'])->group(function() {
+    Route::resource('reviews', 'ReviewsController');
+    Route::resource('skills', 'SkillsController');
 });
 
 Route::get('skilluser', 'SkillUserController@create')->middleware('verified');

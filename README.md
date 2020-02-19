@@ -19,6 +19,7 @@ SHOW TABLES FROM quick_laravel;
  php artisan make:controller ArticleController --resource --model=Ariticle
  php artisan make:controller ReviewsController --resource
  php artisan make:controller SkillUserController
+ php artisan make:controller SkillsController --resource --model=Skill
  php artisan make:controller StateController
  php artisan make:controller ChunkController
  php artisan make:controller CollectionController
