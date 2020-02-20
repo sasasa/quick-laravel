@@ -19,6 +19,12 @@ class CreateReviewsTable extends Migration
             $table->string('name', 50);
             $table->text('body');
             $table->timestamps();
+
+            //外部キー制約
+            $table->foreign('book_id')
+            ->references('id')
+            ->on('books')
+            ->onDelete('cascade');
         });
     }
 
