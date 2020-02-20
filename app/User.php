@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Collection;
 
-class MyCollection extends Collection
+class UserCollection extends Collection
 {
     public function emails()
     {
@@ -58,7 +58,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     public function newCollection(array $models = [])
     {
-        return new MyCollection($models);
+        return new UserCollection($models);
     }
 
     public function skills()

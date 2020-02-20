@@ -3,6 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
+
+class SkillCollection extends Collection
+{
+    public function skillsGroupByTypeForSelect()
+    {
+        $ret = [];
+        $this->each(function($skill) use(&$ret) {
+            $ret[$skill->type][$skill->id] = $skill->name;
+        });
+        return $ret;
+    }
+}
 
 class Skill extends Model
 {
@@ -14,7 +27,12 @@ class Skill extends Model
     protected $fillable = ['type', 'name'];
     
     const TYPES = ['オフィス', 'プログラム','デザイン'];
-    
+
+    public function newCollection(array $models = [])
+    {
+        return new SkillCollection($models);
+    }
+
     public function users()
     {
         return $this

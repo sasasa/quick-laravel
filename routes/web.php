@@ -127,12 +127,13 @@ Route::delete('save/{id}','SaveController@destroy');
 Route::middleware(['debug', 'verified'])->group(function() {
     Route::resource('reviews', 'ReviewsController');
     Route::resource('skills', 'SkillsController');
+    Route::get('skilluser', 'SkillUserController@create')->middleware('verified');
+    Route::post('skilluser', 'SkillUserController@store')->middleware('verified');
+    Route::get('proficiency', 'SkillUserController@proficiency')->middleware('verified');
+    Route::post('proficiency', 'SkillUserController@storeProficiency')->middleware('verified');
 });
 
-Route::get('skilluser', 'SkillUserController@create')->middleware('verified');
-Route::post('skilluser', 'SkillUserController@store')->middleware('verified');
-Route::get('proficiency', 'SkillUserController@proficiency')->middleware('verified');
-Route::post('proficiency', 'SkillUserController@storeProficiency')->middleware('verified');
+
 
 
 

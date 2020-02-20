@@ -16,26 +16,8 @@ class SkillUserController extends Controller
         // DB::enableQueryLog();
         // dd(DB::getQueryLog());
         
-        // dd(Skill::all()->groupBy(function($skill){
-        //     return $skill->type;
-        // }));
-        // dd($ret);
-
-        // $ret = [];
-        // dd(
-        //     Skill::all()->groupBy('type')->map(function($skill) use($ret){
-        //         return $ret[$skill->type][strval($skill->id)] = $skill->name;
-        //     })
-        // );
-
-        return view('skilluser.create', [
-            'skills' => Skill::all(),
-            'skillsGroupByType' => Skill::all()->groupBy('type'),
-            'skillsGroupByTypeForSelect' => Skill::all()->mapToGroups(function($skill) {
-                return [$skill->type => [$skill->id => $skill->name]];
-            }),
-            'userskillids' => $user->skillIds(),
-        ]);
+        return view('skilluser.create', $this->preparationVariables($user));
+        
     }
 
     public function store(Request $req)
@@ -44,10 +26,7 @@ class SkillUserController extends Controller
         //スキルの登録
         $user->skillSet($req->skills);
         
-        return view('skilluser.create', [
-            'skills' => Skill::all(),
-            'userskillids' => $user->skillIds(),
-        ]);
+        return view('skilluser.create', $this->preparationVariables($user));
     }
     
     public function proficiency()
@@ -71,5 +50,15 @@ class SkillUserController extends Controller
             $skill->pivot->save();
         }
         return redirect('proficiency');
+    }
+    private function preparationVariables($user)
+    {
+        $skills = Skill::all();
+        return [
+            'skills' => $skills,
+            'skillsGroupByType' => $skills->groupBy('type'),
+            'skillsGroupByTypeForSelect' => $skills->skillsGroupByTypeForSelect(),
+            'userskillids' => $user->skillIds(),
+        ];
     }
 }
