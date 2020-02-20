@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Skill;
 use DB;
 use Illuminate\Support\Facades\Auth;
-use Arr;
+use App\Events\SkillEvent;
 
 class SkillUserController extends Controller
 {
@@ -15,7 +15,6 @@ class SkillUserController extends Controller
         $user = Auth::user();
         // DB::enableQueryLog();
         // dd(DB::getQueryLog());
-        
         return view('skilluser.create', $this->preparationVariables($user));
         
     }
@@ -25,7 +24,10 @@ class SkillUserController extends Controller
         $user = Auth::user();
         //スキルの登録
         $user->skillSet($req->skills);
+        event(new SkillEvent($user->skillNames(), $user));
         
+        
+        // イベント発行してリスナーが対処する
         return view('skilluser.create', $this->preparationVariables($user));
     }
     
@@ -51,6 +53,7 @@ class SkillUserController extends Controller
         }
         return redirect('proficiency');
     }
+
     private function preparationVariables($user)
     {
         $skills = Skill::all();

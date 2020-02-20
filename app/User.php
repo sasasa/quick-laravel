@@ -75,6 +75,12 @@ class User extends Authenticatable implements MustVerifyEmailContract
         // })->toArray();
         return $this->skills()->get()->modelKeys();
     }
+    public function skillNames()
+    {
+        return $this->skills()->get()->map(function($skill){
+            return $skill->name;
+        })->toArray();
+    }
 
     public function skillSet($skills)
     {

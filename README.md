@@ -116,8 +116,9 @@ SHOW TABLES FROM quick_laravel;
  QUEUE_CONNECTION=database
  QUEUE_DRIVER=database
 
-
+ エラーで表示するviewファイル
  php artisan vendor:publish --tag=laravel-errors
 
-
+ php artisan event:generate
+ php artisan make:mail SkillNotification
 ```
