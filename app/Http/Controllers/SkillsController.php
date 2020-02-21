@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Skill;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+
 
 class SkillsController extends Controller
 {
@@ -39,7 +41,7 @@ class SkillsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, Skill::$rules);
+        $this->validate($request, Skill::$rulesCreate);
         $skill = new Skill;
         $skill->fill($request->all())->save();
         return redirect('skills')
@@ -65,7 +67,10 @@ class SkillsController extends Controller
      */
     public function edit(Skill $skill)
     {
-        //
+        return view('skills.edit', [
+            'skill_types' => Skill::TYPES,
+            'skill' => $skill,
+        ]);
     }
 
     /**
@@ -77,7 +82,14 @@ class SkillsController extends Controller
      */
     public function update(Request $request, Skill $skill)
     {
-        //
+        $this->validate($request, Skill::$rulesUpdate);
+        // nameの重複チェック自分のnameはのぞいてチェックする
+        $request->validate([
+            'name' => [Rule::unique('skills', 'name')->whereNot('name', $skill->name)]
+        ]);
+        $skill->fill($request->all())->save();
+        return redirect('skills')
+        ->with('update', "スキルID：". $skill->id. 'を更新しました。');
     }
 
     /**
@@ -88,6 +100,8 @@ class SkillsController extends Controller
      */
     public function destroy(Skill $skill)
     {
-        //
+        $skill->delete();
+        return redirect('skills')
+        ->with('destroy', "スキルID：". $skill->id. 'を削除しました。');
     }
 }
