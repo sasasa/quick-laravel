@@ -77,7 +77,9 @@ SHOW TABLES FROM quick_laravel;
  php artisan migrate:refresh
  全ロールバックしてマイグレートしてシードを投入
  php artisan migrate:refresh --seed
- 
+ seedできないときは
+ composer dump-autoload
+
  php artisan db:seed --class=BooksTableSeeder
  php artisan db:seed --class=SkillsTableSeeder
 
