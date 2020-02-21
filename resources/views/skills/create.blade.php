@@ -11,13 +11,6 @@
       <div class="text-danger">{{$message}}</div>
     @enderror
   </div>
-  <div class="form-group">
-    <label for="type">{{__('validation.attributes.skill.type')}}</label>
-    <input class="form-control" type="text" name="type" id="type" value="{{old('type')}}">
-    @error('type')
-      <div class="text-danger">{{$message}}</div>
-    @enderror
-  </div>
 
   <div class="form-group">
     <label for="type">{{__('validation.attributes.skill.type')}}</label>

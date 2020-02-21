@@ -122,7 +122,9 @@ return [
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'password_confirmation' => 'パスワード（確認）',
-
+        
+        
+        'type' => 'タイプ',
         'skill' => [
             'type' => 'タイプ',
             'name' => 'スキル名',

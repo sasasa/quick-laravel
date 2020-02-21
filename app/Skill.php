@@ -21,7 +21,7 @@ class Skill extends Model
 {
     public static $rules = [
         'name'    => 'required|string|unique:skills|max:10',
-        'type'    => 'required|integer|in:1,2',
+        'type'    => 'required|integer|in:0,1,2',
     ];
 
     protected $fillable = ['type', 'name'];
