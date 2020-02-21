@@ -19,8 +19,12 @@ class SkillCollection extends Collection
 
 class Skill extends Model
 {
-    public static $rules = [
+    public static $rulesCreate = [
         'name'    => 'required|string|unique:skills|max:10',
+        'type'    => 'required|integer|in:0,1,2',
+    ];
+    public static $rulesUpdate = [
+        'name'    => 'required|string|max:10',
         'type'    => 'required|integer|in:0,1,2',
     ];
 
@@ -40,9 +44,14 @@ class Skill extends Model
         ->using(SkillUser::class)->withPivot(['proficiency']);
     }
 
-    // アクセサ ->type でアクセスするとこの値になる
+    // アクセサ ->type でアクセスすると本来の値ではなくこの値になる
     public function getTypeAttribute($value)
     {
         return self::TYPES[$value];
+    }
+    // アクセサ ->rypeRaw　で本来のカラムの値を取得可能
+    public function getTypeRawAttribute()
+    {
+        return $this->attributes['type'];
     }
 }
