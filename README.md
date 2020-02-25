@@ -3,8 +3,12 @@ composer global require laravel/installer
 laravel new quick-laravel
 
 CREATE DATABASE quick_laravel CHARACTER SET utf8;
+CREATE DATABASE quick_laravel_test CHARACTER SET utf8;
+
 GRANT ALL PRIVILEGES ON quick_laravel.* TO quickusr@localhost IDENTIFIED BY 'quickpass';
+GRANT ALL PRIVILEGES ON quick_laravel_test.* TO quickusr@localhost IDENTIFIED BY 'quickpass';
 USE quick_laravel;
+
 # source C:\Users\user07\php\quick-laravel\quick.sql
 source C:\Users\sae\php\quick-laravel\quick.sql
 
@@ -16,6 +20,17 @@ SHOW TABLES FROM quick_laravel;
 ```
 
 ```
+テスト設定
+php artisan migrate:refresh --database=testing
+php artisan db:seed --database=testing
+
+ログイン画面
+$ php artisan migrate
+$ composer require laravel/ui
+$ php artisan ui vue --auth
+$ npm install
+$ npm run dev
+
  php artisan make:controller ArticleController --resource --model=Ariticle
  php artisan make:controller ReviewsController --resource
  php artisan make:controller SkillUserController
