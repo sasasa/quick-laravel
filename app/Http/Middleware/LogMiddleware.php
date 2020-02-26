@@ -16,10 +16,10 @@ class LogMiddleware
     public function handle($request, Closure $next)
     {
         // ビュー変数を設定
-        $request->merge([
-            'title'=>"速習Laravel",
-            'author'=>"YAMADA Yoshihiro",
-        ]);
+        // $request->merge([
+        //     'title'=>"速習Laravel",
+        //     'author'=>"YAMADA Yoshihiro",
+        // ]);
         
         $path = base_path(). '\storage\logs\access.log';
         file_put_contents($path, date('Y-m-d H:i:s'). "\n", FILE_APPEND);

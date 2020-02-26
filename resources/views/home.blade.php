@@ -25,6 +25,7 @@
                         <li><a href="/skills">スキル一覧登録</a></li>
                         <li><a href="/chunkById">テーブルチャンク</a></li>
                         <li><a href="/record/whereYear">レコード、whereYear</a></li>
+                        <li><a href="/posts">ポリモーフィック関連と画像添付</a></li>
                         
                     </ul>
                     @php

@@ -18,19 +18,15 @@ class CreateSkillUserTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->primary(['skill_id', 'user_id']);
             $table->timestamps();
-
             //外部キー制約
             $table->foreign('skill_id')
                 ->references('id')
                 ->on('skills')
                 ->onDelete('cascade');
-
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-
-            
         });
     }
 

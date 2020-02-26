@@ -38,6 +38,8 @@ $ npm run dev
  php artisan make:controller StateController
  php artisan make:controller ChunkController
  php artisan make:controller CollectionController
+ php artisan make:controller PostsController
+ php artisan make:controller CommentsController
 
  php artisan make:provider HelloServiceProvider
  php artisan make:provider MyServiceProvider
@@ -48,6 +50,9 @@ $ npm run dev
  php artisan make:model Skill -m
  php artisan make:model Review -m
  php artisan make:model SkillUser
+ php artisan make:model Post -m
+ php artisan make:model Comment -m
+ php artisan make:model Image -m
 
 
  php artisan make:request HelloRequest

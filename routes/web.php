@@ -131,6 +131,10 @@ Route::middleware(['debug', 'verified'])->group(function() {
     Route::post('skilluser', 'SkillUserController@store');
     Route::get('proficiency', 'SkillUserController@proficiency');
     Route::post('proficiency', 'SkillUserController@storeProficiency');
+
+    Route::resource('comments', 'CommentsController');
+    Route::resource('posts', 'PostsController');
+    
 });
 
 
