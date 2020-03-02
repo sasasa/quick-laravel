@@ -131,6 +131,7 @@ $ npm run dev
 
  php artisan queue:table
  php artisan queue:work
+ php artisan queue:work --env=dusk.local
  php artisan queue:work --once
  php artisan queue:work --stop-when-empty
  php artisan queue:work --queue=name1,name2
@@ -164,5 +165,7 @@ composer.jsonから最新版をインストール
  composer require --dev laravel/dusk
  php artisan dusk:install
  php artisan dusk:make LoginTest
- php artisan dusk --filter 'ExampleTest'
+ php artisan serve --env=dusk.local
+ php artisan dusk --filter 'LoginTest'
+ .env.dusk.localを作成する
 ```
