@@ -167,7 +167,7 @@ return [
          * Package Service Providers...
          */
         Collective\Html\HtmlServiceProvider::class,
-
+        Barryvdh\Debugbar\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -235,6 +235,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
 
         'myservice' => App\Facades\MyService::class,
+
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

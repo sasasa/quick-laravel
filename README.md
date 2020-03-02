@@ -143,4 +143,20 @@ $ npm run dev
 
  php artisan event:generate
  php artisan make:mail SkillNotification
+
+デバックバー
+ composer require --dev barryvdh/laravel-debugbar
+設定ファイル
+ php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
+
+composer.lockの内容をインストール
+ composer install
+composer.jsonから最新版をインストール
+ composer update
+開発環境向けにインストール
+ composer require --dev phpunit/phpunit ^6.2 
+本番環境向けに--devを含まないインストール
+ composer install --no-dev
+開発環境向けに--devを含むインストール
+ composer install --dev
 ```
