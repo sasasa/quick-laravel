@@ -159,4 +159,10 @@ composer.jsonから最新版をインストール
  composer install --no-dev
 開発環境向けに--devを含むインストール
  composer install --dev
+
+
+ composer require --dev laravel/dusk
+ php artisan dusk:install
+ php artisan dusk:make LoginTest
+ php artisan dusk --filter 'ExampleTest'
 ```
