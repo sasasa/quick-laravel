@@ -5,7 +5,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-8">
-
+      <h2>記事投稿</h2>
       <form action="posts" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
@@ -47,8 +47,17 @@
 
     @foreach ($posts as $post)
       <hr>
-      <p>{{ $post->subject }}</p>
-      <p>{!! nl2br(e($post->body)) !!}</p>
+      <p>
+        {{ $post->subject }}
+        <form class="float-right" action="posts/{{$post->id}}" method="POST">
+          @csrf
+          @method('delete')
+          <input onclick="return confirm('本当に削除しますか')" type="submit" value="記事の削除" class="btn btn-danger btn-sm" >
+        </form>
+      </p>
+      <p>
+        {!! nl2br(e($post->body)) !!}
+      </p>
       <p>
         @foreach ($post->images as $image)
           <img src="{{ 'storage/' . $image->filename }}">
@@ -56,18 +65,26 @@
       </p>
       <blockquote>
         @foreach ($post->comments as $comment)
-            <p>{!! nl2br(e($comment->body)) !!}</p>
+            <p>
+              {!! nl2br(e($comment->body)) !!}
+              <form class="float-right" action="comments/{{$comment->id}}" method="POST">
+                @csrf
+                @method('delete')
+                <input onclick="return confirm('本当に削除しますか')" type="submit" value="コメント削除" class="btn btn-danger btn-sm" >
+              </form>
+            </p>
             <p>
               @foreach ($comment->images as $image)
                 <img src="{{ 'storage/' . $image->filename }}">
               @endforeach
             </p>
         @endforeach
+        <h3>コメント投稿</h3>
         <form method="POST" action="comments" enctype="multipart/form-data">
           @csrf
           <p>
             コメント<br>
-            <textarea name="comment_body" cols="50" rows="3"></textarea>
+            <textarea name="comment_body" cols="30" rows="3">{{old('comment_body')}}</textarea>
             @error('comment_body')
             <div class="text-danger">
               <strong>{{ $message }}</strong>

@@ -36,7 +36,8 @@ class LoginTest extends DuskTestCase
     {
         $user = User::where('email', 'test@test.com')->first();
 
-        $this->browse(function (Browser $browser) use ($user) {
+        $this->browse(function (Browser $browser, Browser $browser2) use ($user) {
+            // 正しいログインしてダッシュボードに遷移する事
             $browser->visit('/login')
                     ->assertSee('ログイン')
                     ->type('email', $user->email)
@@ -44,7 +45,8 @@ class LoginTest extends DuskTestCase
                     ->press('ログイン')
                     ->assertPathIs('/home')
                     ->assertSee('ダッシュボード');
-            
+
+            // スキル設定画面に遷移して１番目と3番目のスキルを選択して設定できていること
             $browser->clickLink("スキル設定")
                     ->assertSee('skills設定')
                     ->check('#skill_1')
@@ -53,7 +55,7 @@ class LoginTest extends DuskTestCase
                     ->assertPathIs('/skilluser')
                     ->assertChecked('#skill_1')
                     ->assertChecked('#skill_3');
-
+            // スキル習熟度設定に遷移してスキル習熟度を設定できること
             $browser->visit('/home')
                     ->assertSee('スキル習熟度設定')
                     ->clickLink("スキル習熟度設定")
@@ -62,7 +64,8 @@ class LoginTest extends DuskTestCase
                     ->press('送信')
                     ->assertPathIs('/proficiency')
                     ->assertInputValue('#skill_1', 8);
-            
+            // 記事投稿画面に遷移して記事とそのコメントを画像付きで投稿できること
+            // 投稿したコメントと記事を削除できること
             $browser->visit('/home')
                     ->assertSee('ポリモーフィック関連と画像添付')
                     ->clickLink("ポリモーフィック関連と画像添付")
@@ -74,7 +77,15 @@ class LoginTest extends DuskTestCase
                     ->assertPathIs('/posts')
                     ->assertSee("ここにタイトルが入ります。")
                     ->assertSee("ここにサンプルが入ります。\nここにサンプルが入ります。\nここにサンプルが入ります。\nここにサンプルが入ります。\nここにサンプルが入ります。\nここにサンプルが入ります。\n")
-                    ->pause(3000);
+                    ->type('comment_body', "ここにコメントが入ります。")
+                    ->attach('comment_files[]', storage_path('app/files/neko.jpg'))->press('コメント投稿')
+                    ->assertSee("ここにコメントが入ります。")
+                    ->press('コメント削除')
+                    ->acceptDialog()
+                    ->assertDontSee("ここにコメントが入ります。")
+                    ->press('記事の削除')
+                    ->acceptDialog()
+                    ->assertDontSee("ここにタイトルが入ります。");
         });
     }
 }

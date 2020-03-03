@@ -162,6 +162,10 @@ composer.jsonから最新版をインストール
  composer install --dev
 
 
+.env.dusk.local
+APP_DEBUG=true
+DEBUGBAR_ENABLED=false # laravel-debugbarを無効
+
  composer require --dev laravel/dusk
  php artisan dusk:install
  php artisan dusk:make LoginTest

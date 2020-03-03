@@ -138,6 +138,17 @@ return [
         'files.3' => '添付画像4',
         'files.4' => '添付画像5',
         'files.5' => '添付画像6',
+        'files.6' => '添付画像7',
+
+        'comment_body' => 'コメント',
+        'comment_files' => '添付画像',
+        'comment_files.0' => '添付画像1',
+        'comment_files.1' => '添付画像2',
+        'comment_files.2' => '添付画像3',
+        'comment_files.3' => '添付画像4',
+        'comment_files.4' => '添付画像5',
+        'comment_files.5' => '添付画像6',
+        'comment_files.6' => '添付画像7',
     ],
 
 ];
