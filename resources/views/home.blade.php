@@ -16,6 +16,7 @@
 
                     <ul>
                         <li><a href="/">welcome</a></li>
+                        <li><a href="/view/foreach_loop">loop</a></li>
                         <li><a href="/hello/list">books一覧</a></li>
                         <li><a href="/view/comp">コンポーネント利用</a></li>
                         <li><a href="/ctrl/upload">アップロード</a></li>
@@ -26,6 +27,7 @@
                         <li><a href="/chunkById">テーブルチャンク</a></li>
                         <li><a href="/record/whereYear">レコード、whereYear</a></li>
                         <li><a href="/posts">ポリモーフィック関連と画像添付</a></li>
+                        
                         
                     </ul>
                     @php

@@ -22,6 +22,10 @@ class Book extends Model
     {
         return $this->hasMany('App\Review');
     }
+    public function reviewComments()
+    {
+        return $this->hasManyThrough('App\ReviewComment', 'App\Review');
+    }
 
     public function scopeAgeGreaterThan($q, $n)
     {

@@ -40,6 +40,7 @@ $ npm run dev
  php artisan make:controller CollectionController
  php artisan make:controller PostsController
  php artisan make:controller CommentsController
+ php artisan make:controller ReviewCommentsController
 
  php artisan make:provider HelloServiceProvider
  php artisan make:provider MyServiceProvider
@@ -53,6 +54,7 @@ $ npm run dev
  php artisan make:model Post -m
  php artisan make:model Comment -m
  php artisan make:model Image -m
+ php artisan make:model ReviewComment -m
 
 
  php artisan make:request HelloRequest
@@ -80,6 +82,7 @@ $ npm run dev
  php artisan make:seeder ReviewsTableSeeder
  php artisan make:seeder SkillsTableSeeder
  php artisan make:seeder UsersTableSeeder
+ php artisan make:seeder ReviewCommentsTableSeeder
 
  php artisan make:factory UserFactory
 
@@ -102,6 +105,8 @@ $ npm run dev
 
  php artisan db:seed --class=BooksTableSeeder
  php artisan db:seed --class=SkillsTableSeeder
+ php artisan db:seed --class=ReviewCommentsTableSeeder
+
 
  php artisan vendor:publish --tag=laravel-pagination
 

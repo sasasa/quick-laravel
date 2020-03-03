@@ -133,6 +133,7 @@ Route::middleware(['debug', 'verified'])->group(function() {
     Route::post('proficiency', 'SkillUserController@storeProficiency');
 
     Route::resource('comments', 'CommentsController');
+    Route::resource('review_comments', 'ReviewCommentsController');
     Route::resource('posts', 'PostsController');
     
 });

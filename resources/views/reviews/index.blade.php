@@ -61,12 +61,43 @@
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
     @foreach($reviews as $review)
     <tr>
       <td>{{$review->book->title}}</td>
       <td>{{$review->name}}</td>
       <td>{{$review->body}}</td>
+      <td>
+        <table>
+          @foreach ($review->reviewComments as $reviewComment)
+          <tr>
+            <td>
+              {{$reviewComment->body}}
+              <form action="/review_comments/{{$reviewComment->id}}" id="form_{{ $reviewComment->id }}" method="POST" style="display:inline">
+                @csrf
+                @method('delete')
+                <a href="#" data-id="{{ $reviewComment->id }}" onclick="deletePost(this);" class="fs12">[&times;]</a>
+              </form>
+            </td>
+          </tr>
+          @endforeach
+          <tr>
+            <td>
+              <form method="POST" action="review_comments">
+                @csrf
+                <input type="hidden" name="review_id" value="{{$review->id}}">
+                <input type="text" name="body" value="{{old('body')}}">
+                @error("body")
+                <div class="text-danger">{{$message}}</div>
+                @enderror
+
+                <input type="submit" value="コメント">
+              </form>
+            </td>
+          </tr>
+        </table>
+      </td>
       <td><a href="/reviews/{{$review->id}}/edit">編集</a></td>
       <td><a href="/reviews/{{$review->id}}/">詳細</a></td>
       <td>
@@ -94,8 +125,16 @@
 @endsection
 
 @section('js')
+'use strict';
+
 $('.toast').toast('show');
 $('.delteForm').submit(function(){
   return confirm("削除してよろしいですか？")
 })
+
+function deletePost(e) {
+  if (confirm('本当に削除しますか?')) {
+    document.getElementById('form_' + e.dataset.id).submit();
+  }
+}
 @endsection

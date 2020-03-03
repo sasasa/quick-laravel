@@ -32,6 +32,11 @@ class Review extends Model
     {
         return $this->belongsTo('App\Book');
     }
+    public function reviewComments()
+    {
+        return $this->hasMany('App\ReviewComment');
+    }
+
     // アクセサ ->BodyAndName、->body_and_name などでアクセス可能になる
     public function getBodyAndNameAttribute()
     {

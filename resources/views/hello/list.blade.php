@@ -28,6 +28,7 @@
       <th>刊行日</th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
     @foreach($records as $index => $record)
     <tr>
@@ -46,6 +47,15 @@
           @endforeach
         </table>
         @endif
+      </td>
+      <td>
+        <table>
+          @foreach ($record->reviewComments as $reviewComment)
+            <tr>
+              <td>{{$reviewComment->body}}</td>
+            </tr>
+          @endforeach
+        </table>
       </td>
       <td>
         <a href="/save/{{$record->id}}/edit">編集</a>
