@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
-
+use App\Traits\Taggable;
 
 class SkillCollection extends Collection
 {
@@ -20,6 +20,8 @@ class SkillCollection extends Collection
 
 class Skill extends Model
 {
+    use Taggable;
+    
     protected $fillable = ['type', 'name'];
     
     const TYPES = ['オフィス', 'プログラム','デザイン'];
@@ -35,10 +37,6 @@ class Skill extends Model
         ->belongsToMany('App\User', 'skill_user')
         ->using(SkillUser::class)->withPivot(['proficiency']);
     }
-    public function tags()
-    {
-        return $this->morphToMany('App\Tag', 'taggable');
-    }
 
     // アクセサ ->type でアクセスすると本来の値ではなくこの値になる
     public function getTypeAttribute($value)
@@ -50,37 +48,5 @@ class Skill extends Model
     {
         return $this->attributes['type'];
     }
-    public function tagNames()
-    {
-        $ary = $this->tags()->get()->map(function($tag) {
-            return '['. $tag->name. ']';
-        })->toArray();
-        return implode(' ', $ary);
-    }
-    public function tagsCreate($request)
-    {
-        \DB::beginTransaction();
-        try {
-            $this->fill($request->all())->save();
-            if(!empty($request->tags)){
-                $ids = collect(preg_split("/[\s　]+/u", $request->tags))->map(function ($val) {
-                    $tagName = mb_substr($val, 1, -1);
-                    if(!empty($tagName)) {
-                        $tag = Tag::firstOrCreate(['name' => $tagName]);
-                        return $tag->id;
-                    }
-                });
-                if($ids->count() > 0) {
-                    $this->tags()->sync($ids);
-                }
-            } else {
-                // 何も送られてこないときは全てのタグを解除する
-                $this->tags()->sync([]);
-            }
-            \DB::commit();
-        } catch (\Exception $e) {
-            \DB::rollback();
-            throw $e;
-        }
-    }
+
 }

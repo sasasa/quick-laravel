@@ -61,7 +61,7 @@ $ npm run dev
  php artisan make:request HelloRequest
  php artisan make:request SkillCreateRequest
  php artisan make:request SkillUpdateRequest
-
+ php artisan make:request PostCreateRequest
 
  php artisan make:rule NumberRule
  php artisan make:rule TagRule
@@ -183,4 +183,8 @@ DEBUGBAR_ENABLED=false # laravel-debugbarを無効
  php artisan serve --env=dusk.local
  php artisan dusk --filter 'LoginTest'
  .env.dusk.localを作成する
+
+ php artisan tinker
 ```
+
+

@@ -27,6 +27,15 @@
           @enderror
         </div>
         <div class="form-group">
+          <label for="tags">タグ</label>
+          <input class="@error('tags') is-invalid @enderror form-control" type="text" name="tags" id="tags" value="{{old('tags')}}">
+          @error('tags')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+        <div class="form-group">
           <label for="files">添付画像</label>
           <input class="@error('files') is-invalid @enderror @error('files.*') is-invalid @enderror form-control-file" type="file" name="files[]" id="files" multiple>
           @error('files')
@@ -58,6 +67,11 @@
       <p>
         {!! nl2br(e($post->body)) !!}
       </p>
+      <div>タグ：
+        @foreach ($post->tags as $tag)
+          <span>{{ $tag->name }},</span>
+        @endforeach
+      </div>
       <p>
         @foreach ($post->images as $image)
           <img src="{{ 'storage/' . $image->filename }}">

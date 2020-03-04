@@ -6,17 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Storage;
+use App\Traits\Taggable;
 
 class Post extends Model
 {
+    use Taggable;
+
     protected $fillable = ['subject', 'body'];
-    
-    public static $rules = [
-        'subject'    => 'required|string|max:20',
-        'body'    => 'required|string|max:400',
-        'files'    => 'required|array',
-        'files.*'    => 'image|mimes:jpeg,png,jpg,gif|dimensions:max_width=600',
-    ];
     
     public function images()
     {
@@ -26,10 +22,7 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
-    public function tags()
-    {
-        return $this->morphToMany('App\Tag', 'taggable');
-    }
+
     public function batchDelete()
     {
         DB::beginTransaction();
@@ -48,18 +41,20 @@ class Post extends Model
                 }
             }
 
-            $this->delete();
+            $this->deleteWithTags();
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
+            throw $e;
         }
     }
 
-    public function batchSave(Request $req)
+    public function batchSave($req)
     {
         DB::beginTransaction();
         try {
-            $this->fill($req->all())->save();
+            // $this->fill($req->all())->save();
+            $this->tagsCreate($req);
 
             $files = $req->file('files');
             if ($files) foreach ($files as $file) {
@@ -69,6 +64,7 @@ class Post extends Model
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
+            throw $e;
         }
     }
 }
