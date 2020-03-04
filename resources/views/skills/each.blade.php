@@ -3,6 +3,17 @@
   <td>{{$skill->name}}</td>
   <td>
     <table>
+      @foreach ($skill->tags as $tag)
+      <tr>
+        <td>
+          {{$tag->name}}
+        </td>
+      </tr>
+      @endforeach
+    </table>    
+  </td>
+  <td>
+    <table>
       @foreach ($skill->users as $user)
       <tr>
         <td>

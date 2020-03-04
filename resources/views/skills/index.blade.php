@@ -16,6 +16,7 @@
     <tr>
       <th>{{__('validation.attributes.skill.type')}}</th>
       <th>{{__('validation.attributes.skill.name')}}</th>
+      <th>{{__('validation.attributes.skill.tags')}}</th>
       <th>{{__('validation.attributes.skill.users')}}</th>
       <th></th>
     </tr>

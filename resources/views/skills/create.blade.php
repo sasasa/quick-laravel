@@ -28,6 +28,15 @@
             <div class="text-danger">{{$message}}</div>
           @enderror
         </div>
+
+        <div class="form-group">
+          <label for="tags">{{__('validation.attributes.tag.name')}}</label>
+          <input class="form-control" type="text" name="tags" id="tags" value="{{old('tags')}}">
+          <span >[PHP] [プログラム] の様に入力してください</span>
+          @error('tags')
+            <div class="text-danger">{{$message}}</div>
+          @enderror
+        </div>
       
         <div class="form-group  d-flex justify-content-end">
           <button type="submit" class="btn btn-primary">Submit</button>

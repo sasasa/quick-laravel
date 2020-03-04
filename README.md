@@ -55,11 +55,16 @@ $ npm run dev
  php artisan make:model Comment -m
  php artisan make:model Image -m
  php artisan make:model ReviewComment -m
+ php artisan make:model Tag -m
 
 
  php artisan make:request HelloRequest
+ php artisan make:request SkillCreateRequest
+ php artisan make:request SkillUpdateRequest
+
 
  php artisan make:rule NumberRule
+ php artisan make:rule TagRule
 
  php artisan make:middleware LogMiddleware
  php artisan make:middleware ElapsedTimeMiddleware
@@ -73,6 +78,7 @@ $ npm run dev
 
  php artisan make:migration create_skills_table
  php artisan make:migration create_skill_user_table
+ php artisan make:migration create_taggables_table
 
 カラム追加
  php artisan make:migration add_deleted_to_reviews_table --table=reviews

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Http\Requests\SkillCreateRequest;
+use App\Http\Requests\SkillUpdateRequest;
 
 
 class SkillsController extends Controller
@@ -39,11 +41,11 @@ class SkillsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SkillCreateRequest $request)
     {
-        $this->validate($request, Skill::$rulesCreate);
+        // $this->validate($request, Skill::$rulesCreate);
         $skill = new Skill;
-        $skill->fill($request->all())->save();
+        $skill->tagsCreate($request);
         return redirect('skills')
         ->with('store', "スキルID：". $skill->id. 'を作成しました。');
     }
@@ -80,14 +82,14 @@ class SkillsController extends Controller
      * @param  \App\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Skill $skill)
+    public function update(SkillUpdateRequest $request, Skill $skill)
     {
-        $this->validate($request, Skill::$rulesUpdate);
+        // $this->validate($request, Skill::$rulesUpdate);
         // nameの重複チェック自分のnameはのぞいてチェックする
         $request->validate([
             'name' => [Rule::unique('skills', 'name')->whereNot('name', $skill->name)]
         ]);
-        $skill->fill($request->all())->save();
+        $skill->tagsCreate($request);
         return redirect('skills')
         ->with('update', "スキルID：". $skill->id. 'を更新しました。');
     }

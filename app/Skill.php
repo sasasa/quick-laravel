@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 
+
 class SkillCollection extends Collection
 {
     public function skillsGroupByTypeForSelect()
@@ -19,15 +20,6 @@ class SkillCollection extends Collection
 
 class Skill extends Model
 {
-    public static $rulesCreate = [
-        'name'    => 'required|string|unique:skills|max:10',
-        'type'    => 'required|integer|in:0,1,2',
-    ];
-    public static $rulesUpdate = [
-        'name'    => 'required|string|max:10',
-        'type'    => 'required|integer|in:0,1,2',
-    ];
-
     protected $fillable = ['type', 'name'];
     
     const TYPES = ['オフィス', 'プログラム','デザイン'];
@@ -43,6 +35,10 @@ class Skill extends Model
         ->belongsToMany('App\User', 'skill_user')
         ->using(SkillUser::class)->withPivot(['proficiency']);
     }
+    public function tags()
+    {
+        return $this->morphToMany('App\Tag', 'taggable');
+    }
 
     // アクセサ ->type でアクセスすると本来の値ではなくこの値になる
     public function getTypeAttribute($value)
@@ -53,5 +49,38 @@ class Skill extends Model
     public function getTypeRawAttribute()
     {
         return $this->attributes['type'];
+    }
+    public function tagNames()
+    {
+        $ary = $this->tags()->get()->map(function($tag) {
+            return '['. $tag->name. ']';
+        })->toArray();
+        return implode(' ', $ary);
+    }
+    public function tagsCreate($request)
+    {
+        \DB::beginTransaction();
+        try {
+            $this->fill($request->all())->save();
+            if(!empty($request->tags)){
+                $ids = collect(preg_split("/[\s　]+/u", $request->tags))->map(function ($val) {
+                    $tagName = mb_substr($val, 1, -1);
+                    if(!empty($tagName)) {
+                        $tag = Tag::firstOrCreate(['name' => $tagName]);
+                        return $tag->id;
+                    }
+                });
+                if($ids->count() > 0) {
+                    $this->tags()->sync($ids);
+                }
+            } else {
+                // 何も送られてこないときは全てのタグを解除する
+                $this->tags()->sync([]);
+            }
+            \DB::commit();
+        } catch (\Exception $e) {
+            \DB::rollback();
+            throw $e;
+        }
     }
 }
