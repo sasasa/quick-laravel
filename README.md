@@ -1,3 +1,4 @@
+
 ```
 composer global require laravel/installer
 laravel new quick-laravel
